@@ -1,6 +1,3 @@
-[submodule "dotfiles-nvim"]
-	path = dotfiles-nvim
-	url = https://github.com/ap6661/dotfiles-nvim
 [submodule "nvim/dotfiles-nvim"]
 	path = nvim/dotfiles-nvim
 	url = https://github.com/ap6661/dotfiles-nvim
