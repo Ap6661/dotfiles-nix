@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   imports =
@@ -11,7 +11,8 @@
       ./homemanager.nix
       ./i3/i3.nix
       ./nvim/nvim.nix
-    ];
+      #./unstable.nix
+    ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix;
 
   i3.enable = true;
   nvim.enable = true;
