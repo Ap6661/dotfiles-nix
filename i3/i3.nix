@@ -18,6 +18,7 @@ in {
             dmenu
             i3lock
             i3status
+            xclip
         ];
       };
     };
