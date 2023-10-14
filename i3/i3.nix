@@ -25,6 +25,10 @@ in {
 
     home-manager.users.apnda.home.file = {
       ".config/i3/config".source = ./config;
+      ".config/nitrogen" = {
+        source = ./nitrogen;
+        recursive = true;
+      };
     };
 
   };
