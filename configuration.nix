@@ -10,9 +10,11 @@
       ./hardware-configuration.nix
       ./homemanager.nix
       ./i3/i3.nix
+      ./nvim/nvim.nix
     ];
 
   i3.enable = true;
+  nvim.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -93,13 +95,10 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-     pkgs.neovim
-     pkgs.neovim-gtk
      pkgs.wezterm
      pkgs.firefox
      pkgs.git
        pkgs.gh
-       pkgs.lazygit
      pkgs.gcc
      pkgs.unzip
      pkgs.wget

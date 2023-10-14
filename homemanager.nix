@@ -27,10 +27,6 @@ in
       ".wezterm.lua".source = ./wezterm.lua; 
       ".config/sway/config".source = ./sway;
       ".background".source = ./background;
-      ".config/nvim" = {
-      	source = ./nvim;
-        recursive = true;
-      }; 
     };
   };
 }
