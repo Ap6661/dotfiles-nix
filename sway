@@ -4,6 +4,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+
 set $ws1  1
 set $ws2  2
 set $ws3  3
@@ -39,7 +40,10 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more res1lutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg ~/.background.jpg fill
+output * {
+  bg ~/.background.jpg fill
+  scale 1.0
+}
 #
 # Example configuration:
 #
