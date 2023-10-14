@@ -19,13 +19,14 @@ in
       home.packages = [
         (pkgs.nerdfonts.override { fonts = [ "Hack" ]; } )
         pkgs.htop
+        pkgs.discord
       ];
 
       ## Configure the files!
       home.file = {
       ".wezterm.lua".source = ./wezterm.lua; 
       ".config/sway/config".source = ./sway;
-      ".background.jpg".source = ./background.jpg;
+      ".background".source = ./background;
       ".config/nvim" = {
       	source = ./nvim;
         recursive = true;

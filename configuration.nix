@@ -9,7 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./homemanager.nix
+      ./i3/i3.nix
     ];
+
+  i3.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -59,12 +62,19 @@
     xkbVariant = "";
   };
 
-  ## KDE
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  programs.sway.enable = true;
-  programs.waybar.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+    };
+  };
 
+  ##programs.sway.enable = true;
+  ##programs.waybar.enable = true;
+
+  services = {
+    tlp.enable = true;
+  };
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -93,7 +103,11 @@
      pkgs.gcc
      pkgs.unzip
      pkgs.wget
-     pkgs.wl-clipboard
+     #pkgs.wl-clipboard
+     pkgs.xclip
+
+
+     pkgs.brightnessctl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
