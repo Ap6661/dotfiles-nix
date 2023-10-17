@@ -12,19 +12,21 @@ in {
     services.xserver = {
       windowManager.i3 = {
         enable = true;
-        package = pkgs.i3-gaps;
+        package = pkgs.i3;
         extraPackages = with pkgs; [
             nitrogen
             dmenu
             i3lock
             i3status
             xclip
+            eww
+            wmctrl
         ];
       };
     };
 
     home-manager.users.apnda.home.file = {
-      ".config/i3/config".source = ./config;
+      ".config/i3/config".source = ./i3/config;
       ".config/nitrogen" = {
         source = ./nitrogen;
         recursive = true;

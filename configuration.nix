@@ -102,8 +102,6 @@
      #pkgs.wl-clipboard
      pkgs.brightnessctl
 
-     pkgs.eww
-     pkgs.wmctrl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
