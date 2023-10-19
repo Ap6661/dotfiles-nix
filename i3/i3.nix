@@ -21,6 +21,7 @@ in {
             xclip
             eww
             wmctrl
+            beats
         ];
       };
     };
