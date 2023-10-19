@@ -8,10 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./unstable.nix
       ./homemanager.nix
       ./i3/i3.nix
       ./nvim/nvim.nix
-      #./unstable.nix
     ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix;
 
   i3.enable = true;
@@ -101,6 +101,7 @@
      pkgs.wget
      #pkgs.wl-clipboard
      pkgs.brightnessctl
+
 
   ];
 
