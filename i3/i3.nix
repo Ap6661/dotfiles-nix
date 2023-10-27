@@ -32,6 +32,10 @@ in {
         source = ./nitrogen;
         recursive = true;
       };
+      ".config/eww" = {
+        source = ./eww/config;
+        recursive = true;
+      };
     };
 
   };

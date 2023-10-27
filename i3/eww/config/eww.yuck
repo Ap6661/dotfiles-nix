@@ -1,0 +1,232 @@
+(defwindow powermenu
+ :monitor 0
+ :windowtype "dock"
+ :stacking "fg"
+ :wm-ignore false
+ :geometry (geometry
+   :width "100%"
+   :height "2%"
+   :anchor "top center")
+ (powermenu_layout)
+ )
+
+(defwidget powermenu_layout []
+ (box 
+  :orientation "horizontal" 
+  :class "bx"
+
+  ;(centerbox 
+  ;  :orientation "h"
+  ;  (label :text 1)
+  ;  ;(circular-progress :value {EWW_BATTERY.BAT1.capacity} :thickness "20")
+  ;  (label :text 2)
+  ;  (label :text 3)
+  ;)
+
+
+  (_workspaces
+   :halign "start"
+  )
+
+
+  (box
+    :halign "end"
+    :space-evenly false
+    :spacing 16
+    :class "container"
+
+   ;(label :text active-window)
+   (_i3-mode)
+
+   (_network
+    :strength net
+    :offline "󰣼"
+    :excellent "󰣺"
+    :good "󰣸"
+    :okay "󰣶"
+    :slow "󰣴"
+   )
+
+  ; (label text: {EWW_BATTERY})
+
+  (label 
+   :text {time.hour + ":" + time.min + "|" + "󰁥" + beats}
+   :class "inner"
+  )
+
+  (_battery
+   :capacity {EWW_BATTERY.BAT1.capacity}
+   :charging {EWW_BATTERY.BAT1.status}
+   :icons {'
+    { 
+    "Charging": 
+      { 
+        "reallylow": "󰂎󱐋", 
+        "low": "󱊡󱐋", 
+        "medium": "󱊢󱐋", 
+        "high": "󱊣󱐋"
+      }, 
+    "Discharging": 
+      { 
+        "reallylow": "󰂎", 
+        "low": "󱊡", 
+        "medium": "󱊢", 
+        "high": "󱊣"
+      }, 
+    "Not charging": 
+      { 
+        "reallylow": "󰂎 ", 
+        "low": "󱊡 ", 
+        "medium": "󱊢 ", 
+        "high": "󱊣 "
+      } 
+    }
+    '}  )
+    )
+  )
+)
+
+
+
+
+
+(defwidget _network [strength offline excellent good okay slow]
+   (label :text 
+    {
+    strength == "" ? offline :
+    strength < 26 ? slow : 
+    strength < 51 ? okay : 
+    strength < 76 ? good : excellent
+    }
+   :class "inner"
+   )
+)
+
+(defwidget _battery [capacity charging icons]
+   (label :text 
+    {
+    capacity + "% " +
+    (
+     capacity < 25 ? icons[charging]["reallylow"] : 
+     capacity < 51 ? icons[charging]["low"] : 
+     capacity < 76 ? icons[charging]["medium"] : icons[charging]["high"]
+    )
+    }
+   :class "inner"
+   )
+)
+
+(defvar available-workspaces {"[
+ \"1\",
+ \"2\",
+ \"3\",
+ \"4\",
+ \"5\",
+ \"6\",
+ \"7\",
+ \"8\",
+ \"9\",
+ \"10\"]"})
+
+(defvar workspace-names {"[0,
+ \"\",
+ \"\",
+ \"\",
+ \"󰭹\",
+ \"5\",
+ \"6\",
+ \"7\",
+ \"8\",
+ \"9\",
+ \"10\"]"})
+
+(defwidget _workspaces []
+  (box
+   :class "workspace-box"
+   :space-evenly false
+   :spacing 8
+   :halign  "start"
+
+   (for index in {available-workspaces}
+    (_workspace-button 
+    :index index 
+    :width 90
+    ) 
+   )
+   ;(for entry in {captures(active-workspaces, "\"[0-9]+\"")}
+   ; (_workspace-button 
+   ; ;;------------------> VVV this is a bullshit fix here <--------------
+   ; :index {replace((entry+"")[0], "\"", "")} 
+   ; :entry entry
+   ; ) 
+   ;)
+  )
+)
+
+;(defwidget _workspace-button [index entry]
+;   (label 
+;   :class {"workspace-" + (captures(active-workspaces, "\"[0-9]+\"")[(captures(current-workspaces-index, "[0-9]+")[0][0])] == entry ? "active" : "inactive")}
+;   :text {workspace-names[index]}
+;   )
+;)
+
+(defwidget _workspace-button [index]
+   (label 
+   ;:text {captures(active-workspaces, "\"[0-9]+\"")[(captures(current-workspaces-index, "[0-9]+")[0][0])]}
+   :visible {arraylength(captures(active-workspaces, "\"" + index + "\"")) == 1}
+   :class {"workspace-" + (captures(active-workspaces, "\"[0-9]+\"")[(captures(current-workspaces-index, "[0-9]+")[0][0])][0] == "\""+index+"\"" ? "active" : "inactive")}
+   :text {workspace-names[index]}
+   )
+)
+
+(deflisten active-workspaces 
+  :initial '["1"]'
+  "xprop -spy -root _NET_DESKTOP_NAMES"
+)
+
+(deflisten current-workspaces-index
+  :initial '1'
+  "xprop -spy -root _NET_CURRENT_DESKTOP"
+)
+
+
+(deflisten active-window
+  :initial ""
+  ;"xprop -spy -root | awk '/_NET_ACTIVE_WINDOW\\(/ {system(\"xprop -id \" $5)}' | awk -spy -F \"=\" '/_NET_WM_NAME/{print$2}'"
+  ;"xprop -spy -root | awk '/_NET_ACTIVE_WINDOW\\(/ {system('xprop -id ' $5)}' | awk -F '=' '/_NET_WM_NAME/{print$2}'"
+  ;"xprop -spy -root | awk '/_NET_ACTIVE_WINDOW\\(/ {system('xprop -id ' $5)}'"
+  "echo window name"
+)
+
+(defpoll time :interval "5s"
+ :initial `date +'{}'`
+ `date +'{"hour":"%H","min":"%M"}'`)
+
+(defpoll beats :interval "5s"
+ :initial `beats -ai`
+ `beats -ai`)
+
+(defpoll net :interval "100s"
+ :initial '0'
+  `nmcli -t -f SIGNAL,ACTIVE device wifi \
+  | awk -F':' '{if($2=="yes")print$1}'`
+)
+
+
+;
+; I3 Specific things
+;
+
+(deflisten i3-mode
+  :initial '{"change":"default"}'
+  `i3-msg -t subscribe -m '[ "mode" ]'`
+)
+
+(defwidget _i3-mode []
+  (label 
+   :class "contained-label"
+   :visible {i3-mode.change != "default"}
+   :text {i3-mode.change}
+  )
+)
+
