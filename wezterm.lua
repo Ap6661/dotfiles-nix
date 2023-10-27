@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 return {
 	default_prog = {'bash'},
 
-	color_scheme = 'Dracula (Official)',
+	color_scheme = 'Catppuccin Macchiato',
 	font = wezterm.font 'Hack Nerd Font Mono',
 
 
