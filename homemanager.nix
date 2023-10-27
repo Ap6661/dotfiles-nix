@@ -25,7 +25,7 @@ in
       ## Configure the files!
       home.file = {
       ".wezterm.lua".source = ./wezterm.lua; 
-      ".config/sway/config".source = ./sway;
+      ##".config/sway/config".source = ./sway;
       ".background".source = ./background;
     };
   };
