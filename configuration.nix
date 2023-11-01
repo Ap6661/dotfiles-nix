@@ -72,6 +72,7 @@
     };
   };
 
+
   ##programs.sway.enable = true;
   ##programs.waybar.enable = true;
 
@@ -91,6 +92,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.permittedInsecurePackages = [
+	  "electron-24.8.6"
+  ];
+
   environment.systemPackages = with pkgs; [
      pkgs.wezterm
      pkgs.firefox
@@ -101,8 +106,7 @@
      pkgs.wget
      #pkgs.wl-clipboard
      pkgs.brightnessctl
-
-
+     pkgs.flameshot
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

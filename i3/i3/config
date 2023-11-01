@@ -23,16 +23,19 @@ set $up k
 set $right l
 
 gaps inner 10
-default_border pixel 3
+default_border pixel 5
 
 font pango:Hack Nerd Font Mono 20
 
 exec nitrogen --restore
+exec picom &
 exec eww open powermenu
 exec xinput | grep Touchpad | awk -F "id=" '{print$2}' | awk '{print$1}' | xargs -I id xinput set-prop id "libinput Disable While Typing Enabled" 1
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
+
+bindsym Print exec "flameshot gui"
 
 bindsym XF86AudioRaiseVolume  exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+ && $refresh_i3status
 bindsym XF86AudioLowerVolume  exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%- && $refresh_i3status

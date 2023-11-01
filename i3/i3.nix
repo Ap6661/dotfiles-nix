@@ -22,12 +22,14 @@ in {
             eww
             wmctrl
             beats
+            picom
         ];
       };
     };
 
     home-manager.users.apnda.home.file = {
       ".config/i3/config".source = ./i3/config;
+      ".config/picom".source = ./picom;
       ".config/nitrogen" = {
         source = ./nitrogen;
         recursive = true;
