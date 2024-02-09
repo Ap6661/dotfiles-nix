@@ -3,7 +3,7 @@
 ## 
 
 set $mod Mod1
-set $menu dmenu_run
+set $menu rofi -show
 set $term wezterm
 
 set $ws1  1

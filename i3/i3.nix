@@ -15,7 +15,7 @@ in {
         package = pkgs.i3;
         extraPackages = with pkgs; [
             nitrogen
-            dmenu
+            rofi
             i3lock
             i3status
             xclip
@@ -36,6 +36,10 @@ in {
       };
       ".config/eww" = {
         source = ./eww/config;
+        recursive = true;
+      };
+      ".config/rofi" = {
+        source = ./rofi/config;
         recursive = true;
       };
     };
