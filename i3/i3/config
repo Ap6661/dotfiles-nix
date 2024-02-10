@@ -175,3 +175,13 @@ mode "freeze" {
 for_window [class="feishin"] move container to workspace number $ws2
 for_window [class="firefox"] move container to workspace number $ws3
 for_window [class="discord"] move container to workspace number $ws4
+
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #c6a0f6 #c6a0f6 #ffffff #c6a0f6   #c6a0f6
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
