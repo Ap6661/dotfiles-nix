@@ -1,6 +1,6 @@
 { pkgs, config, ...}:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
   imports = [
@@ -10,7 +10,7 @@ in
 
 
   home-manager.users.apnda = {
-      home.stateVersion = "23.05";
+      home.stateVersion = "23.11";
       programs.home-manager.enable = true;
 
       fonts.fontconfig.enable = true;
