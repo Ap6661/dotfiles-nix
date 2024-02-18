@@ -23,6 +23,8 @@ in {
             wmctrl
             beats
             picom
+            xborders
+              libnotify
         ];
       };
     };
