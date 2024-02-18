@@ -87,6 +87,7 @@
     description = "APnda";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+    initialPassword = "ChangeMe";
   };
 
   # Allow unfree packages
