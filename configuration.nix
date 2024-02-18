@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./unstable.nix
+      #./unstable.nix # Try not to use this ok?
       ./homemanager.nix
       ./i3/i3.nix
       ./nvim/nvim.nix
@@ -91,10 +91,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-	  "electron-24.8.6"
-  ];
 
   environment.systemPackages = with pkgs; [
      pkgs.wezterm
