@@ -86,6 +86,7 @@
     isNormalUser = true;
     description = "APnda";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.nushell;  # <========== Shell
     packages = with pkgs; [];
     initialPassword = "ChangeMe";
   };
