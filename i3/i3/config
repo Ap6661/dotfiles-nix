@@ -3,7 +3,9 @@
 ## 
 
 set $mod Mod1
+set $altmod Mod4
 set $menu rofi -show
+set $emoji rofi -modi emoji -show emoji
 set $term wezterm
 
 set $ws1  1
@@ -63,6 +65,7 @@ bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+Return exec $menu
+bindsym $altmod+period exec $emoji
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

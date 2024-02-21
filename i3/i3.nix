@@ -15,7 +15,6 @@ in {
         package = pkgs.i3;
         extraPackages = with pkgs; [
             nitrogen
-            rofi
             i3lock
             i3status
             xclip
@@ -24,9 +23,15 @@ in {
             beats
             picom
             xborders
-              libnotify
+            libnotify
+            xdotool # Depended by rofi-emoji
         ];
       };
+    };
+
+    home-manager.users.apnda.programs.rofi = {
+      enable = true;
+      plugins = [pkgs.rofi-emoji];
     };
 
     home-manager.users.apnda.home.file = {
