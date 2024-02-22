@@ -87,7 +87,6 @@
     description = "APnda";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.nushell;  # <========== Shell
-    packages = with pkgs; [];
     initialPassword = "ChangeMe";
   };
 
@@ -95,16 +94,16 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-     pkgs.wezterm
-     pkgs.firefox
-     pkgs.git
-       pkgs.gh
-     pkgs.gcc
-     pkgs.unzip
-     pkgs.wget
-     #pkgs.wl-clipboard
-     pkgs.brightnessctl
-     pkgs.flameshot
+     wezterm
+     firefox
+     git
+       gh
+     gcc
+     unzip
+     wget
+     #wl-clipboard
+     brightnessctl
+     flameshot
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
