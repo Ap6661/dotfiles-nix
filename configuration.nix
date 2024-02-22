@@ -14,6 +14,11 @@
       ./nvim/nvim.nix
     ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix;
 
+
+
+  ## USE FLAKES!
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   i3.enable = true;
   nvim.enable = true;
 
