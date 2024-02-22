@@ -49,6 +49,7 @@ in {
         source = ./rofi/config;
         recursive = true;
       };
+      ".xsession".source = ./.xsession;
     };
 
   };
