@@ -10,6 +10,7 @@
       ./i3/i3.nix
       ./nvim/nvim.nix
       ./hardware-configuration.nix
+      ./keyboard.nix
     ];
 
 
@@ -87,7 +88,9 @@
   users.users.apnda = {
     isNormalUser = true;
     description = "APnda";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" 
+    "docker"
+    ];
     shell = pkgs.nushell;  # <========== Shell
     initialPassword = "ChangeMe";
   };
@@ -134,5 +137,9 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
+  services.fwupd.enable = true;
+  virtualisation.docker.enable = true;
+
 
 }

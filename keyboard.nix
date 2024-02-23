@@ -1,19 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/framework/13-inch/13th-gen-intel"
-  ];
-  services.fwupd.enable = true;
-
-
-  virtualisation.docker.enable = true;
-  users.users.apnda = {
-    extraGroups = [
-    "docker"
-    ];
-  };
-
-
   ## 
   ## No caps lock on keyboard but only on embeded keyboard
   ## 

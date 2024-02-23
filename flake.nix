@@ -6,9 +6,10 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, nixos-hardware, ... }: 
     {
       nixosConfigurations = 
       let 
@@ -24,7 +25,8 @@
               home-manager.useUserPackages = true;
               home-manager.users.apnda = import ./home.nix;
             }
-          ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix;
+            nixos-hardware.nixosModules.framework-13th-gen-intel
+          ];
         };
       };
     };
