@@ -2,18 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, home-manager, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #./unstable.nix # Try not to use this ok?
-      ./homemanager.nix
       ./i3/i3.nix
       ./nvim/nvim.nix
-    ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix;
-
+    ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix
+      ++ lib.optional (builtins.pathExists ./hardware-configuration.nix) ./local/configuration.nix;
 
 
   ## USE FLAKES!
@@ -65,9 +62,9 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   services.xserver = {

@@ -3,19 +3,25 @@
 
   inputs = 
   {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ... }: 
-    let 
-      lib = nixpkgs.lib;
-    in {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
+    {
       nixosConfigurations = 
       {
-        nixos = lib.nixosSystem {
+        nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ 
-            ./configuration.nix 
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.apnda = import ./home.nix;
+            }
           ];
         };
       };
