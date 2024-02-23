@@ -9,8 +9,8 @@
     [ # Include the results of the hardware scan.
       ./i3/i3.nix
       ./nvim/nvim.nix
-    ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix
-      ++ lib.optional (builtins.pathExists ./hardware-configuration.nix) ./local/configuration.nix;
+      ./hardware-configuration.nix
+    ];
 
 
   ## USE FLAKES!

@@ -11,8 +11,10 @@
   outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
     {
       nixosConfigurations = 
-      {
-        nixos = nixpkgs.lib.nixosSystem {
+      let 
+        lib = nixpkgs.lib;
+      in {
+        nixos = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ 
             ./configuration.nix
@@ -22,7 +24,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.apnda = import ./home.nix;
             }
-          ];
+          ] ++ lib.optional (builtins.pathExists ./local/configuration.nix) ./local/configuration.nix;
         };
       };
     };
