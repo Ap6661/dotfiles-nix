@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 return {
 
 	color_scheme = 'Catppuccin Macchiato',
-	font = wezterm.font 'Hack Nerd Font Mono',
+	font = wezterm.font 'FiraCode Nerd Font Mono',
 
 
   use_fancy_tab_bar = false,

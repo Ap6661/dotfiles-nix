@@ -5,7 +5,7 @@
 
     /* Here be ~Dragons~ packages */
     home.packages = [
-      (pkgs.nerdfonts.override { fonts = [ "Hack" ]; } )
+      (pkgs.nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; } )
         pkgs.htop
         pkgs.discord
     ];
