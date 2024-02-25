@@ -23,7 +23,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.apnda = import ./home.nix;
+              home-manager.users.apnda = import ./user/home.nix;
             }
             nixos-hardware.nixosModules.framework-13th-gen-intel
           ];
