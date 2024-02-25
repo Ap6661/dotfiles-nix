@@ -17,6 +17,10 @@
       in {
         nixos = lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit nixos-hardware;
+            inherit home-manager;
+          };
           modules = [ 
             ./configuration.nix
             home-manager.nixosModules.home-manager
@@ -25,7 +29,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.apnda = import ./user/home.nix;
             }
-            nixos-hardware.nixosModules.framework-13th-gen-intel
+            ./hardware/framework.nix
           ];
         };
       };

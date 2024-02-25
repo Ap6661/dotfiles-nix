@@ -1,5 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, nixos-hardware, ... }:
 {
+
+  imports = [
+    nixos-hardware.nixosModules.framework-13th-gen-intel
+  ];
+
   ## 
   ## No caps lock on keyboard but only on embeded keyboard
   ## 

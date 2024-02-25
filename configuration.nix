@@ -8,8 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./keyboard.nix
-
       ./user/i3/i3.nix
       ./user/nvim/nvim.nix
     ];
