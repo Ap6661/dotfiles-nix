@@ -1,7 +1,6 @@
 { lib, config, pkgs, home-manager, ...}:
 with lib;
 let 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
   cfg = config.nvim;
 in {
   options.nvim = {
@@ -10,13 +9,15 @@ in {
   config = mkIf cfg.enable {
     
     environment.systemPackages = with pkgs; [
-      pkgs.neovim
-        pkgs.neovim-gtk
-        pkgs.lazygit
-        pkgs.wget
-        pkgs.git
-        pkgs.gh
-        pkgs.gcc
+      neovim
+        neovim-gtk
+        lazygit
+        wget
+        git
+        gh
+        gcc
+        ripgrep
+        fd
     ];
     home-manager.users.apnda.home.file = {
       ".config/nvim" = {
