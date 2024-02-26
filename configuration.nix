@@ -12,6 +12,8 @@
       ./user/nvim/nvim.nix
     ];
 
+  ##services.logind.extraConfig = "HandleLidSwitch=hibernate";
+
 
   ## USE FLAKES!
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

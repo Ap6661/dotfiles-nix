@@ -5,6 +5,15 @@
     nixos-hardware.nixosModules.framework-13th-gen-intel
   ];
 
+
+  powerManagement.enable = true;
+
+  services.logind = {
+    powerKey = "suspend";
+    lidSwitch = "suspend";
+  };
+
+
   ## 
   ## No caps lock on keyboard but only on embeded keyboard
   ## 
