@@ -29,10 +29,21 @@ $Crust:         $macchiato-crust;
 
 
 * {
+  all: unset;
   color: $Text;
-  background: $Crust;
   font-family: "Hack Nerd Font Mono";
   font-size: 1.2em;
+}
+
+.transparent {
+  padding: 8;
+}
+
+.bx {
+  background: $Crust;
+  border-radius: 20px;
+  padding-left: 10;
+  padding-right: 10;
 }
 
 .inner {
@@ -60,7 +71,7 @@ $Crust:         $macchiato-crust;
   background: $Surface0;
   padding-left: 15px;
   padding-right: 15px;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 
 .contained-label {
@@ -73,7 +84,7 @@ $Crust:         $macchiato-crust;
   background: $Surface0;
   padding-left: 15px;
   padding-right: 15px;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 
 

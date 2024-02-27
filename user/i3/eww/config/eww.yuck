@@ -11,6 +11,10 @@
  )
 
 (defwidget powermenu_layout []
+ (box
+  :orientantion "horizontal"
+  :class "transparent"
+  :spacing 160
  (box 
   :orientation "horizontal" 
   :class "bx"
@@ -84,6 +88,7 @@
     '}  )
     )
   )
+ )
 )
 
 
