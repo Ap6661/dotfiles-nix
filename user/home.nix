@@ -6,7 +6,7 @@
     /* Here be ~Dragons~ packages */
     home.packages = [
       (pkgs.nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; } )
-        pkgs.htop
+        pkgs.btop
         pkgs.discord
     ];
 
@@ -15,5 +15,9 @@
       ".wezterm.lua".source = ./wezterm.lua; 
     ##".config/sway/config".source = ./sway;
       ".background".source = ./background;
+      ".config/btop" = {
+        source = ./btop;
+        recursive = true;
+      };
   };
 }
