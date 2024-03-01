@@ -8,6 +8,7 @@
       (pkgs.nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; } )
         pkgs.btop
         pkgs.discord
+        pkgs.telegram-desktop
     ];
 
     ## Configure the files!

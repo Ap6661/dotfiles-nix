@@ -181,3 +181,4 @@ mode "freeze" {
 for_window [class="feishin"] move container to workspace number $ws2
 for_window [class="firefox"] move container to workspace number $ws3
 for_window [class="discord"] move container to workspace number $ws4
+for_window [class="TelegramDesktop"] move container to workspace number $ws4
