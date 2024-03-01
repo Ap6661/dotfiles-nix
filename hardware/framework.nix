@@ -15,7 +15,7 @@
 
 
   services.logind = {
-    powerKey = "suspend";
+    powerKey = "hibernate";
     lidSwitch = "suspend";
   };
 
