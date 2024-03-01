@@ -8,6 +8,12 @@
 
   powerManagement.enable = true;
 
+
+  boot.kernelParams = [ "resume=/swapfile" "resume_offset=423411712" ];
+  boot.resumeDevice = "/dev/disk/by-uuid/79bcf5e9-d6b7-4b39-b509-41336f8fbd55";
+  security.protectKernelImage = false;
+
+
   services.logind = {
     powerKey = "suspend";
     lidSwitch = "suspend";
@@ -15,7 +21,7 @@
 
 
   ## 
-  ## No caps lock on keyboard but only on embeded keyboard
+  ## no caps lock on keyboard but only on embeded keyboard
   ## 
   services.xserver.displayManager.sessionCommands = ''
   keyboardId=$(
