@@ -1,7 +1,6 @@
 { lib, config, pkgs, ...}:
 with lib;
 let 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
   cfg = config.i3;
 in {
   options.i3 = {
