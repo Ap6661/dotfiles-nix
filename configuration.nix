@@ -107,9 +107,11 @@
     extraGroups = [ "networkmanager" "wheel" 
     "docker"
     ];
-    shell = pkgs.nushell;  # <========== Shell
+    shell = pkgs.fish;  # <========== Shell
     initialPassword = "ChangeMe";
   };
+
+  programs.fish.enable = true; # <========== Shell
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
