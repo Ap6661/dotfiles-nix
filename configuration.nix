@@ -19,6 +19,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   i3.enable = true;
+  programs.dconf.enable = true;
   nvim.enable = true;
 
   security.rtkit.enable = true;

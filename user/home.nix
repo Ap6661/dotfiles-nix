@@ -11,6 +11,21 @@
         pkgs.telegram-desktop
     ];
 
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Catppuccin-Macchiato-Compact-Mauve-Dark";
+        package = pkgs.catppuccin-gtk.override {
+          accents = [ "mauve" ];
+          size = "compact";
+          tweaks = [ "rimless" "black" ];
+          variant = "macchiato";
+        };
+      };
+    };
+
+
+
     ## Configure the files!
     home.file = {
       ".wezterm.lua".source = ./wezterm.lua; 
@@ -20,5 +35,5 @@
         source = ./btop;
         recursive = true;
       };
-  };
+    };
 }
