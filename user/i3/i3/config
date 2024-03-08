@@ -38,6 +38,7 @@ exec nitrogen --restore
 exec picom &
 exec xborders --border-rgba c6a0f6aa &
 exec eww open powermenu
+exec_always eww reload
 exec xinput | grep Touchpad | awk -F "id=" '{print$2}' | awk '{print$1}' | xargs -I id xinput set-prop id "libinput Disable While Typing Enabled" 1
 
 # Use pactl to adjust volume in PulseAudio.
