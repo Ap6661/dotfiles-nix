@@ -73,6 +73,7 @@
     enable = true;
     displayManager = {
       sddm.enable = true;
+      sddm.theme = "${import ./user/theme/sddm.nix { inherit pkgs; }}";
     };
   };
 
