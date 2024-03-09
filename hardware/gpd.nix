@@ -5,7 +5,7 @@
 
   services.xserver.displayManager.sessionCommands = ''
   keyboardId=$(
-    ${pkgs.xorg.xinput}/bin/xinput list 'HAILUCK CO.,LTD USB KEYBOARD' --id-only
+    ${pkgs.xorg.xinput}/bin/xinput list --id-only 'HAILUCK CO.,LTD USB KEYBOARD'
     )
     if [[ $keyboardId ]]; then 
       ${pkgs.xorg.setxkbmap}/bin/setxkbmap -device $keyboardId -option ctrl:swapcaps
