@@ -32,6 +32,7 @@
    :halign "start"
   )
 
+
   (box
     :halign "end"
     :space-evenly false
@@ -65,34 +66,37 @@
   :off    "󰖁"
   )
 
-  (_battery
-   :capacity {EWW_BATTERY.BAT1.capacity}
-   :charging {EWW_BATTERY.BAT1.status}
-   :icons {'
-    { 
-    "Charging": 
+  (for i in battery-list
+    (_battery
+     :visible {EWW_BATTERY[i] != "null"}
+     :capacity {EWW_BATTERY[i].capacity}
+     :charging {EWW_BATTERY[i].status}
+     :icons {'
       { 
-        "reallylow": "󰂎󱐋", 
-        "low": "󱊡󱐋", 
-        "medium": "󱊢󱐋", 
-        "high": "󱊣󱐋"
-      }, 
-    "Discharging": 
-      { 
-        "reallylow": "󰂎", 
-        "low": "󱊡", 
-        "medium": "󱊢", 
-        "high": "󱊣"
-      }, 
-    "Not charging": 
-      { 
-        "reallylow": "󰂎 ", 
-        "low": "󱊡 ", 
-        "medium": "󱊢 ", 
-        "high": "󱊣 "
-      } 
-    }
-    '}  )
+      "Charging": 
+        { 
+          "reallylow": "󰂎󱐋", 
+          "low": "󱊡󱐋", 
+          "medium": "󱊢󱐋", 
+          "high": "󱊣󱐋"
+        }, 
+      "Discharging": 
+        { 
+          "reallylow": "󰂎", 
+          "low": "󱊡", 
+          "medium": "󱊢", 
+          "high": "󱊣"
+        }, 
+      "Not charging": 
+        { 
+          "reallylow": "󰂎 ", 
+          "low": "󱊡 ", 
+          "medium": "󱊢 ", 
+          "high": "󱊣 "
+        } 
+      }
+      '}  ))
+  
     )
   )
  )
@@ -114,8 +118,9 @@
    )
 )
 
-(defwidget _battery [capacity charging icons]
-   (label :text 
+(defwidget _battery [ visible capacity charging icons ]
+   (label :visible visible
+     :text 
     {
     capacity + "% " +
     (
@@ -127,6 +132,18 @@
    :class "inner"
    )
 )
+
+(defvar battery-list {"[
+ \"BAT1\",
+ \"BAT2\",
+ \"BAT3\",
+ \"BAT4\",
+ \"BAT5\",
+ \"BAT6\",
+ \"BAT7\",
+ \"BAT8\",
+ \"BAT9\",
+ \"BAT10\"]"})
 
 (defvar available-workspaces {"[
  \"1\",
