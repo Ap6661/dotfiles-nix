@@ -134,6 +134,7 @@
 )
 
 (defvar battery-list {"[
+ \"BAT0\",
  \"BAT1\",
  \"BAT2\",
  \"BAT3\",
