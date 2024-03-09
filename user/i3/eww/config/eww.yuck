@@ -32,7 +32,6 @@
    :halign "start"
   )
 
-
   (box
     :halign "end"
     :space-evenly false
@@ -41,6 +40,7 @@
 
    ;(label :text active-window)
    (_i3-mode)
+
 
 
    (_network
@@ -52,10 +52,9 @@
     :slow "󰣴"
    )
 
-  ; (label text: {EWW_BATTERY})
 
   (label 
-   :text {time.hour + ":" + time.min + "|" + "󰁥" + beats}
+   :text {time.weekday + " " + time.month + " " + time.day + "|" + time.hour + ":" + time.min + "|" + "󰁥" + beats }
    :class "inner"
   )
 
@@ -213,7 +212,7 @@
 
 (defpoll time :interval "5s"
  :initial `date +'{}'`
- `date +'{"hour":"%H","min":"%M"}'`)
+ `date +'{"hour":"%H","min":"%M", "weekday":"%a", "month":"%b", "day":"%m/%d"}'`)
 
 (defpoll beats :interval "5s"
  :initial `beats -ai`
