@@ -49,6 +49,7 @@
             }
             ./hardware/gpd.nix
             ./hardware-configuration/gpd.nix
+            ./user/game.nix
           ];
         };
       };
