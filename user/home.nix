@@ -8,6 +8,9 @@
     (pkgs.nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; } )
   ];
 
+
+## GTK Theme 
+
 ## Configure the files!
   home.file = {
     ".background".source = ./theme/background;

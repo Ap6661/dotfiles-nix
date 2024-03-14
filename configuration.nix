@@ -1,14 +1,16 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, pkgs, home-manager, ... }:
+{ pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./user/i3/i3.nix
-      ./user/nvim/nvim.nix
+    [ 
+      ./user/x/i3/i3.nix
+      ./user/x/rofi/rofi.nix
+      ./user/general/cli/nvim/nvim.nix
+      ./user/general/cli/btop/btop.nix
+      ./user/general/gui/messaging/messaging.nix
+      ./user/general/gui/wezterm/wezterm.nix
+      ./user/theme/gtk.nix
     ];
 
   ##services.logind.extraConfig = "HandleLidSwitch=hibernate";
@@ -18,8 +20,18 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   i3.enable = true;
+  rofi.enable = true;
+
   programs.dconf.enable = true;
   nvim.enable = true;
+
+  wezterm.enable = true;
+
+  btop.enable = true;
+  gtk-theme.enable = true;
+
+  messaging.enable = true;
+
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -77,10 +89,6 @@
     };
   };
 
-
-  ##programs.sway.enable = true;
-  ##programs.waybar.enable = true;
-
   services = {
     tlp = {
       enable = true;
@@ -117,16 +125,12 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-     wezterm
      firefox
      git
        gh
      gcc
      unzip
      wget
-     #wl-clipboard
-     brightnessctl
-     flameshot
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

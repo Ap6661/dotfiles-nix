@@ -1,9 +1,9 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, home-manager, ...}:
 with lib;
 let 
   cfg = config.wezterm;
 in {
-  options.nvim = {
+  options.wezterm = {
     enable = mkEnableOption "wezterm";
   };
   config = mkIf cfg.enable {
@@ -12,7 +12,7 @@ in {
         wezterm
     ];
 
-    home.file = {
+    home-manager.users.apnda.home.file = {
       ".wezterm.lua".source = ./wezterm.lua; 
     };
   };

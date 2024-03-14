@@ -1,13 +1,13 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, home-manager, ...}:
 with lib;
 let 
-  cfg = config.gtk;
+  cfg = config.gtk-theme;
 in {
-  options.nvim = {
-    enable = mkEnableOption "gtk";
+  options.gtk-theme = {
+    enable = mkEnableOption "gtk-theme";
   };
   config = mkIf cfg.enable {
-    gtk = {
+    home-manager.users.apnda.gtk = {
       enable = true;
       theme = {
         name = "Catppuccin-Macchiato-Compact-Mauve-Dark";
@@ -19,10 +19,11 @@ in {
         };
       };
     };
-    xdg.configFile = {
-      "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-      "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-      "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+
+    home-manager.users.apnda.xdg.configFile = {
+      "gtk-4.0/assets".source = "${config.home-manager.users.apnda.gtk.theme.package}/share/themes/${config.home-manager.users.apnda.gtk.theme.name}/gtk-4.0/assets";
+      "gtk-4.0/gtk.css".source = "${config.home-manager.users.apnda.gtk.theme.package}/share/themes/${config.home-manager.users.apnda.gtk.theme.name}/gtk-4.0/gtk.css";
+      "gtk-4.0/gtk-dark.css".source = "${config.home-manager.users.apnda.gtk.theme.package}/share/themes/${config.home-manager.users.apnda.gtk.theme.name}/gtk-4.0/gtk-dark.css";
     };
   };
 }

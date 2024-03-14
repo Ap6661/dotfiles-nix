@@ -3,7 +3,7 @@ with lib;
 let 
   cfg = config.messaging;
 in {
-  options.nvim = {
+  options.messaging = {
     enable = mkEnableOption "messaging";
   };
   config = mkIf cfg.enable {

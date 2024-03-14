@@ -3,7 +3,7 @@ with lib;
 let 
   cfg = config.rofi;
 in {
-  options.nvim = {
+  options.rofi = {
     enable = mkEnableOption "rofi";
   };
   config = mkIf cfg.enable {
