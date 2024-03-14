@@ -8,16 +8,19 @@
       ./user/x/rofi/rofi.nix
       ./user/general/cli/nvim/nvim.nix
       ./user/general/cli/btop/btop.nix
+      ./user/general/cli/fish/fish.nix
       ./user/general/gui/messaging/messaging.nix
       ./user/general/gui/wezterm/wezterm.nix
       ./user/theme/gtk.nix
     ];
 
-  ##services.logind.extraConfig = "HandleLidSwitch=hibernate";
-
 
   ## USE FLAKES!
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+####################
+#  CUSTOM MODULES  #
+####################
 
   i3.enable = true;
   rofi.enable = true;
@@ -27,10 +30,13 @@
 
   wezterm.enable = true;
 
+  fish.enable = true;
   btop.enable = true;
   gtk-theme.enable = true;
 
   messaging.enable = true;
+
+####################
 
 
   security.rtkit.enable = true;
@@ -115,11 +121,9 @@
     extraGroups = [ "networkmanager" "wheel" 
     "docker"
     ];
-    shell = pkgs.fish;  # <========== Shell
     initialPassword = "ChangeMe";
   };
 
-  programs.fish.enable = true; # <========== Shell
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
