@@ -10,11 +10,10 @@ in {
     
     environment.systemPackages = with pkgs; [
       neovim
-        neovim-gtk
         lazygit
         wget
         git
-        gh
+          gh
         gcc
         ripgrep
         fd

@@ -15,23 +15,24 @@ in {
         extraPackages = with pkgs; [
             nitrogen
             i3lock
-            i3status
             xclip
+            
             eww
-            wmctrl
-            beats
+              wmctrl
+              beats
+              i3status
+
             picom
+
             xborders
-            libnotify
-            xdotool # Depended by rofi-emoji
+              libnotify
+
+            brightnessctl
+            flameshot
         ];
       };
     };
 
-    home-manager.users.apnda.programs.rofi = {
-      enable = true;
-      plugins = [pkgs.rofi-emoji];
-    };
 
     home-manager.users.apnda.home.file = {
       ".config/i3/config".source = ./i3/config;
@@ -42,10 +43,6 @@ in {
       };
       ".config/eww" = {
         source = ./eww/config;
-        recursive = true;
-      };
-      ".config/rofi" = {
-        source = ./rofi/config;
         recursive = true;
       };
       ".xsession".source = ./.xsession;
