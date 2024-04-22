@@ -4,12 +4,22 @@
   inputs = 
   {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    nvim = {
+      url = "github:ap6661/dotfiles-nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, ... }: 
+  outputs = { nixpkgs, home-manager, nixos-hardware, nvim, ... }: 
     {
       nixosConfigurations = 
       let 
@@ -20,9 +30,11 @@
           specialArgs = {
             inherit nixos-hardware;
             inherit home-manager;
+            inherit nvim;
           };
           modules = [ 
             ./configuration.nix
+            nvim.nixosModules.nvim
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -41,6 +53,7 @@
           };
           modules = [ 
             ./configuration.nix
+            nvim.nixosModules.nvim
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

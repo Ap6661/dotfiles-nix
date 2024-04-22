@@ -1,4 +1,3 @@
-
 { pkgs, ... }:
 
 {
@@ -6,7 +5,6 @@
     [ 
       ./user/x/i3/i3.nix
       ./user/x/rofi/rofi.nix
-      ./user/general/cli/nvim/nvim.nix
       ./user/general/cli/btop/btop.nix
       ./user/general/cli/fish/fish.nix
       ./user/general/gui/messaging/messaging.nix
@@ -25,8 +23,9 @@
   i3.enable = true;
   rofi.enable = true;
 
+
   programs.dconf.enable = true;
-  nvim.enable = true;
+#  nvim.enable = true;
 
   wezterm.enable = true;
 
@@ -82,13 +81,16 @@
   };
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
+
     displayManager = {
       sddm.enable = true;
       sddm.theme = "${import ./user/theme/sddm.nix { inherit pkgs; }}";
