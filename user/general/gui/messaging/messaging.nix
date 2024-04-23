@@ -8,7 +8,7 @@ in {
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      discord
+      (discord.override { withOpenASAR = true; withVencord = true; })
       telegram-desktop
     ];
   };
