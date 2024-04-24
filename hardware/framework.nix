@@ -23,13 +23,18 @@
   ## 
   ## no caps lock on keyboard but only on embeded keyboard
   ## 
+  ## As well as normal scrolling
+  ## 
   services.xserver.displayManager.sessionCommands = ''
   keyboardId=$(
-    ${pkgs.xorg.xinput}/bin/xinput |
-      sed -nE 's/.*AT Translated Set 2 keyboard.*?id=([0-9]+).*/\1/p'
+    ${pkgs.xorg.xinput}/bin/xinput list --id-only 'AT Translated Set 2 keyboard'
     )
     if [[ $keyboardId ]]; then 
       ${pkgs.xorg.setxkbmap}/bin/setxkbmap -device $keyboardId -option ctrl:nocaps
     fi
+
+    ${pkgs.xorg.xinput}/bin/xinput set-prop PIXA3854:00\ 093A:0274\ Touchpad libinput\ Natural\ Scrolling\
+ Enabled 1
   '';
+
 }
