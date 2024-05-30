@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ 
+    [
       ./user/x/i3/i3.nix
       ./user/x/rofi/rofi.nix
       ./user/general/cli/btop/btop.nix
@@ -16,16 +16,16 @@
   ## USE FLAKES!
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-####################
-#  CUSTOM MODULES  #
-####################
+  ####################
+  #  CUSTOM MODULES  #
+  ####################
 
   i3.enable = true;
   rofi.enable = true;
 
 
   programs.dconf.enable = true;
-#  nvim.enable = true;
+  #  nvim.enable = true;
 
   wezterm.enable = true;
 
@@ -35,7 +35,7 @@
 
   messaging.enable = true;
 
-####################
+  ####################
 
 
   security.rtkit.enable = true;
@@ -120,8 +120,10 @@
   users.users.apnda = {
     isNormalUser = true;
     description = "APnda";
-    extraGroups = [ "networkmanager" "wheel" 
-    "docker"
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
     ];
     initialPassword = "ChangeMe";
   };
@@ -131,12 +133,12 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-     firefox
-     git
-       gh
-     gcc
-     unzip
-     wget
+    firefox
+    git
+    gh
+    gcc
+    unzip
+    wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

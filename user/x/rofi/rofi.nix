@@ -1,8 +1,9 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, ... }:
 with lib;
-let 
+let
   cfg = config.rofi;
-in {
+in
+{
   options.rofi = {
     enable = mkEnableOption "rofi";
   };
@@ -14,7 +15,7 @@ in {
 
     home-manager.users.apnda.programs.rofi = {
       enable = true;
-      plugins = [pkgs.rofi-emoji];
+      plugins = [ pkgs.rofi-emoji ];
     };
 
     home-manager.users.apnda.home.file = {

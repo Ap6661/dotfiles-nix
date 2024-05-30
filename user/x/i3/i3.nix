@@ -1,8 +1,9 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, ... }:
 with lib;
-let 
+let
   cfg = config.i3;
-in {
+in
+{
   options.i3 = {
     enable = mkEnableOption "i3";
   };
@@ -13,22 +14,22 @@ in {
         enable = true;
         package = pkgs.i3;
         extraPackages = with pkgs; [
-            nitrogen
-            i3lock
-            xclip
-            
-            eww
-              wmctrl
-              beats
-              i3status
+          nitrogen
+          i3lock
+          xclip
 
-            picom
+          eww
+          wmctrl
+          beats
+          i3status
 
-            xborders
-              libnotify
+          picom
 
-            brightnessctl
-            flameshot
+          xborders
+          libnotify
+
+          brightnessctl
+          flameshot
         ];
       };
     };

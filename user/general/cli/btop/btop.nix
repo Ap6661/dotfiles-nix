@@ -1,8 +1,9 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, ... }:
 with lib;
-let 
+let
   cfg = config.btop;
-in {
+in
+{
   options.btop = {
     enable = mkEnableOption "btop";
   };
@@ -13,7 +14,7 @@ in {
 
     home-manager.users.apnda.home.file = {
       ".config/btop" = {
-        source = ./config; 
+        source = ./config;
         recursive = true;
       };
     };

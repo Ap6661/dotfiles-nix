@@ -1,8 +1,9 @@
-{ lib, config, pkgs, home-manager, ...}:
+{ lib, config, pkgs, home-manager, ... }:
 with lib;
-let 
+let
   cfg = config.gtk-theme;
-in {
+in
+{
   options.gtk-theme = {
     enable = mkEnableOption "gtk-theme";
   };

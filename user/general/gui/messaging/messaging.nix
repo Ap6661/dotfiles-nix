@@ -1,8 +1,9 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, ... }:
 with lib;
-let 
+let
   cfg = config.messaging;
-in {
+in
+{
   options.messaging = {
     enable = mkEnableOption "messaging";
   };

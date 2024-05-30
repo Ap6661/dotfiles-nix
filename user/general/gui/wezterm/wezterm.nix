@@ -1,19 +1,20 @@
-{ lib, config, pkgs, home-manager, ...}:
+{ lib, config, pkgs, home-manager, ... }:
 with lib;
-let 
+let
   cfg = config.wezterm;
-in {
+in
+{
   options.wezterm = {
     enable = mkEnableOption "wezterm";
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; } )
-        wezterm
+      (nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; })
+      wezterm
     ];
 
     home-manager.users.apnda.home.file = {
-      ".wezterm.lua".source = ./wezterm.lua; 
+      ".wezterm.lua".source = ./wezterm.lua;
     };
   };
 }

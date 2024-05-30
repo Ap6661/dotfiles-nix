@@ -1,8 +1,9 @@
-{ lib, config, pkgs, home-manager, ...}:
+{ lib, config, pkgs, home-manager, ... }:
 with lib;
-let 
+let
   cfg = config.fish;
-in {
+in
+{
   options.fish = {
     enable = mkEnableOption "fish";
   };
@@ -13,7 +14,7 @@ in {
 
     home-manager.users.apnda.home = {
 
-      packages = [ pkgs.eza ]; 
+      packages = [ pkgs.eza ];
 
       file = {
         ".config/fish/functions/fish_prompt.fish".source = ./prompt.fish;
