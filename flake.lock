@@ -61,11 +61,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717120295,
-        "narHash": "sha256-fQegpD+1Vfg4TYdsfbSpnrJwPAhAdm6qhA8lP+9im28=",
+        "lastModified": 1717848887,
+        "narHash": "sha256-Lv1YR4BsV+vyxCfvaTLHnHWyeSpTyoo74EGrj1PAb0k=",
         "owner": "ap6661",
         "repo": "dotfiles-nvim",
-        "rev": "1f5a08da72380a9c0d348d44523890a443afeda3",
+        "rev": "dc14164e6d0b372c249fdd6e4c6e58313151e053",
         "type": "github"
       },
       "original": {
