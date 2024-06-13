@@ -44,6 +44,7 @@
               }
               ./hardware/framework.nix
               ./hardware-configuration/framework.nix
+              ./user/game.nix
             ];
           };
           nixos-gpd = lib.nixosSystem {
