@@ -14,8 +14,10 @@
 
       nvim = {
         url = "github:ap6661/dotfiles-nvim";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.home-manager.follows = "home-manager";
+        inputs = {
+          nixpkgs.follows = "nixpkgs";
+          home-manager.follows = "home-manager";
+        };
       };
     };
 
