@@ -115,6 +115,11 @@
     };
   };
 
+  # Get rid of that god awful bell. This is a weird way but it works
+  xdg.sounds.enable = false;
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.apnda = {
