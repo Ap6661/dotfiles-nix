@@ -16,9 +16,8 @@ in
     };
 
     home-manager.users.apnda.home = {
-      packages = with pkgs; [ 
-        eza 
-      ];
+      packages = with pkgs; [ eza ];
+      file.".zshrc".source = ./.zshrc;
     };
   };
 }
