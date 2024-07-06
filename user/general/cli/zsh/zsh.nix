@@ -9,20 +9,24 @@ in
   config = lib.mkIf cfg.enable {
 
     users.users.apnda.shell = pkgs.zsh;
-    programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestions.enable = true;  
-      syntaxHighlighting.enable = true;
-      shellAliases = {
-        ls = "eza";
-      };
-      ohMyZsh = {
+    programs = {
+      zsh = {
         enable = true;
-        plugins = [ "git" ];
-        theme = "fino-time";
+        enableCompletion = true;
+        autosuggestions.enable = true;  
+        syntaxHighlighting.enable = true;
+        shellAliases = {
+          ls = "eza";
+        };
+        ohMyZsh = {
+          enable = true;
+          plugins = [ "git" ];
+          theme = "fino-time";
+        };
       };
     };
+
+    environment.pathsToLink = [ "/share/zsh" ];
 
     home-manager.users.apnda.home = {
       packages = with pkgs; [ eza ];
