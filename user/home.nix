@@ -8,6 +8,7 @@
     (pkgs.nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; })
   ];
 
+  programs.mpv.enable = true;
 
   ## Configure the files!
   home.file = {

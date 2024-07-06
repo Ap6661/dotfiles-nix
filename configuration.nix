@@ -58,8 +58,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+# Enable networking
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -117,8 +116,28 @@
 
   # Get rid of that god awful bell. This is a weird way but it works
   xdg.sounds.enable = false;
-  environment.variables = {
-    EDITOR = "nvim";
+
+  environment = {
+    systemPackages = with pkgs; [
+      firefox
+        git
+        gh
+        gcc
+        unzip
+        wget
+        (writers.writeBashBin "myBashScript" ''
+          echo Hello
+        '')
+        (stdenv.mkDerivation {
+          name = "test package";
+          src = ./.;
+          installPhase = ''
+            mkdir -p $out/share/sounds 
+            echo This is a test > $out/share/sounds/test
+          '';
+        })
+    ];
+    pathsToLink = [ "/share/sounds" ];
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -136,15 +155,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    firefox
-    git
-    gh
-    gcc
-    unzip
-    wget
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
