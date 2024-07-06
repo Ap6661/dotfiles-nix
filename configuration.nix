@@ -6,7 +6,7 @@
       ./user/x/i3/i3.nix
       ./user/x/rofi/rofi.nix
       ./user/general/cli/btop/btop.nix
-      ./user/general/cli/fish/fish.nix
+      ./user/general/cli/zsh/zsh.nix
       ./user/general/gui/messaging/messaging.nix
       ./user/general/gui/wezterm/wezterm.nix
       ./user/theme/gtk.nix
@@ -29,7 +29,7 @@
 
   wezterm.enable = true;
 
-  fish.enable = true;
+  zsh.enable = true;
   btop.enable = true;
   gtk-theme.enable = true;
 
