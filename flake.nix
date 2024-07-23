@@ -12,6 +12,13 @@
 
       nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+      stylix = {
+       url = "github:danth/stylix";
+       inputs.nixpkgs.follows = "nixpkgs";
+       inputs.home-manager.follows = "home-manager";
+      };
+
+
       nvim = {
         url = "github:ap6661/dotfiles-nvim";
         inputs = {
@@ -21,7 +28,7 @@
       };
     };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, nvim, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, nvim, ... }@inputs:
     {
       nixosConfigurations =
         let
@@ -33,11 +40,10 @@
             specialArgs = {
               inherit nixos-hardware;
               inherit home-manager;
-              inherit nvim;
+              inherit inputs;
             };
             modules = [
               ./configuration.nix
-              nvim.nixosModules.nvim
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
@@ -47,6 +53,8 @@
               ./hardware/framework.nix
               ./hardware-configuration/framework.nix
               ./user/game.nix
+              inputs.nvim.nixosModules.nvim
+              inputs.stylix.nixosModules.stylix
             ];
           };
           nixos-gpd = lib.nixosSystem {

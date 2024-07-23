@@ -3,39 +3,57 @@
 {
   imports =
     [
-      ./user/x/i3/i3.nix
+    ./user/x/i3/i3.nix
       ./user/x/rofi/rofi.nix
       ./user/general/cli/btop/btop.nix
       ./user/general/cli/zsh/zsh.nix
       ./user/general/gui/messaging/messaging.nix
       ./user/general/gui/wezterm/wezterm.nix
-      ./user/theme/gtk.nix
     ];
+  stylix = {
+    enable = true;
+    base16Scheme = {
+      base00 = "#0E0014";
+      base01 = "#1A1326";
+      base02 = "#3C2945";
+      base03 = "#604766";
+      base04 = "#83678A";
+      base05 = "#AB86AD";
+      base06 = "#D4A9D4";
+      base07 = "#FFD6FF";
+      base08 = "#F00000";
+      base09 = "#EFFF75";
+      base0A = "#ABED55";
+      base0B = "#34F900";
+      base0C = "#00B3C7";
+      base0D = "#0085C7";
+      base0E = "#BF00FB";
+      base0F = "#753A36";
+    };
+    image = ./user/theme/background;
+  };
 
-
-  ## USE FLAKES!
+## USE FLAKES!
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  ####################
-  #  CUSTOM MODULES  #
-  ####################
+####################
+#  CUSTOM MODULES  #
+####################
 
   i3.enable = true;
   rofi.enable = true;
 
 
   programs.dconf.enable = true;
-  #  nvim.enable = true;
 
   wezterm.enable = true;
 
   zsh.enable = true;
   btop.enable = true;
-  gtk-theme.enable = true;
 
   messaging.enable = true;
 
-  ####################
+####################
 
 
   security.rtkit.enable = true;
@@ -44,27 +62,27 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+# If you want to use JACK applications, uncomment this
+#jack.enable = true;
   };
 
-  # Bootloader.
+# Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+# Configure network proxy if necessary
+# networking.proxy.default = "http://user:password@proxy:port/";
+# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 # Enable networking
-  networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
 
-  # Set your time zone.
+# Set your time zone.
   time.timeZone = "America/Chicago";
 
-  # Select internationalisation properties.
+# Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -79,7 +97,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure keymap in X11
+# Configure keymap in X11
 
   services = {
     xserver = {
@@ -91,8 +109,10 @@
     };
 
     displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ./user/theme/sddm.nix { inherit pkgs; }}";
+      sddm = {
+        enable = true;
+        theme = "where-is-my-sddm-theme";
+      };
     };
   };
 
@@ -114,77 +134,76 @@
     };
   };
 
-  # Get rid of that god awful bell. This is a weird way but it works
+# Get rid of that god awful bell. This is a weird way but it works
   xdg.sounds.enable = false;
 
   environment = {
     systemPackages = with pkgs; [
+      where-is-my-sddm-theme
       firefox
+        file
         git
         gh
         gcc
         unzip
         wget
         (writers.writeBashBin "myBashScript" ''
-          echo Hello
-        '')
+         echo Hello
+         '')
         (stdenv.mkDerivation {
-          name = "test package";
-          src = ./.;
-          installPhase = ''
-            mkdir -p $out/share/sounds 
-            echo This is a test > $out/share/sounds/test
-          '';
-        })
+         name = "test package";
+         src = ./.;
+         installPhase = ''
+         mkdir -p $out/share/sounds 
+         echo This is a test > $out/share/sounds/test
+         '';
+         })
     ];
     pathsToLink = [ "/share/sounds" ];
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+# Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.apnda = {
     isNormalUser = true;
     description = "APnda";
     extraGroups = [
       "networkmanager"
-      "wheel"
-      "docker"
+        "wheel"
     ];
     initialPassword = "ChangeMe";
   };
 
 
-  # Allow unfree packages
+# Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+# Some programs need SUID wrappers, can be configured further or are
+# started in user sessions.
+# programs.mtr.enable = true;
+# programs.gnupg.agent = {
+#   enable = true;
+#   enableSSHSupport = true;
+# };
 
-  # List services that you want to enable:
+# List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+# Enable the OpenSSH daemon.
+# services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+# Open ports in the firewall.
+# networking.firewall.allowedTCPPorts = [ ... ];
+# networking.firewall.allowedUDPPorts = [ ... ];
+# Or disable the firewall altogether.
+# networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+# This value determines the NixOS release from which the default
+# settings for stateful data, like file locations and database versions
+# on your system were taken. It‘s perfectly fine and recommended to leave
+# this value at the release version of the first install of this system.
+# Before changing this value read the documentation for this option
+# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
-  services.fwupd.enable = true;
-  virtualisation.docker.enable = true;
-
+    services.fwupd.enable = true;
 
 }

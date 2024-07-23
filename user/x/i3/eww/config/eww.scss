@@ -1,36 +1,8 @@
-@import "./catppuccin.scss";
-
-$Rosewater:     $macchiato-rosewater;
-$Flamingo:      $macchiato-flamingo;
-$Pink:          $macchiato-pink;
-$Mauve:         $macchiato-mauve;
-$Red:           $macchiato-red;
-$Maroon:        $macchiato-maroon;
-$Peach:         $macchiato-peach;
-$Yellow:        $macchiato-yellow;
-$Green:         $macchiato-green;
-$Teal:          $macchiato-teal;
-$Sky:           $macchiato-sky;
-$Sapphire:      $macchiato-sapphire;
-$Blue:          $macchiato-blue;
-$Lavender:      $macchiato-lavender;
-$Text:          $macchiato-text;
-$Subtext1:      $macchiato-subtext1;
-$Subtext0:      $macchiato-subtext0;
-$Overlay2:      $macchiato-overlay2;
-$Overlay1:      $macchiato-overlay1;
-$Overlay0:      $macchiato-overlay0;
-$Surface2:      $macchiato-surface2;
-$Surface1:      $macchiato-surface1;
-$Surface0:      $macchiato-surface0;
-$Base:          $macchiato-base;
-$Mantle:        $macchiato-mantle;
-$Crust:         $macchiato-crust;
-
+@import "./stylix.scss";
 
 * {
   all: unset;
-  color: $Text;
+  color: $base05;
   font-family: "Hack Nerd Font Mono";
   font-size: 1.2em;
 }
@@ -40,7 +12,7 @@ $Crust:         $macchiato-crust;
 }
 
 .bx {
-  background: $Crust;
+  background: $base00;
   border-radius: 20px;
   padding-left: 10px;
   padding-right: 10px;
@@ -49,7 +21,7 @@ $Crust:         $macchiato-crust;
 }
 
 .inner {
-  background: $Surface2;
+  background: $base02;
   padding-left: 10px;
   padding-right: 10px;
   margin-top: 3px;
@@ -58,21 +30,21 @@ $Crust:         $macchiato-crust;
 }
 
 .workspace-active {
-  background: $Mauve;
-  color: $Surface0;
+  background: $base0E;
+  color: $base02;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 20px;
 }
 
 .workspace-inactive {
-  background: $Surface0;
+  background: $base01;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .workspace-box {
-  background: $Surface0;
+  background: $base01;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 5px;
@@ -81,13 +53,13 @@ $Crust:         $macchiato-crust;
 }
 
 .contained-label {
-  background: $Surface0;
+  background: $base01;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .container {
-  background: $Surface0;
+  background: $base01;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 20px;
