@@ -8,6 +8,4 @@ configuration{
   hide-scrollbar: true;
   sidebar-mode: true;
 }
-
-
-@theme "~/.config/rofi/catppuccin-macchiato.rasi"
+@theme "custom"
