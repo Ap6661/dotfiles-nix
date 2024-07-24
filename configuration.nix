@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports =
@@ -111,7 +111,7 @@
     displayManager = {
       sddm = {
         enable = true;
-        theme = "where-is-my-sddm-theme";
+        theme = "where_is_my_sddm_theme_qt5";
       };
     };
   };
@@ -139,7 +139,19 @@
 
   environment = {
     systemPackages = with pkgs; [
-      where-is-my-sddm-theme
+
+
+      # SDDM theme
+      (where-is-my-sddm-theme.override {
+       themeConfig.General = {
+        backgroundFill = "${config.stylix.base16Scheme.base00}";
+        passwordCursorColor = "${config.stylix.base16Scheme.base01}";
+        passwordTextColor = "${config.stylix.base16Scheme.base0E}";
+       };
+       variants = ["qt5"];
+       })
+
+
       firefox
         file
         git
