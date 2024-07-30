@@ -65,7 +65,8 @@
             };
             modules = [
               ./configuration.nix
-              nvim.nixosModules.nvim
+              inputs.nvim.nixosModules.nvim
+              inputs.stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
