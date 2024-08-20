@@ -22,7 +22,8 @@ in
           beats
           i3status
 
-          picom
+          # picom
+          ( pkgs.callPackage ./picom.nix {  } )
 
           xborders
           libnotify
