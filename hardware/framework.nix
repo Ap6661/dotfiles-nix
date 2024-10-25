@@ -19,6 +19,10 @@
     lidSwitch = "suspend";
   };
 
+  services.udev.extraRules = '' 
+    SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="5", RUN+="${pkgs.systemd}/bin/systemctl hibernate"
+  '';
+
 
   ## 
   ## no caps lock on keyboard but only on embeded keyboard
