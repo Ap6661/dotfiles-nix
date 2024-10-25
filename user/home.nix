@@ -13,6 +13,7 @@
 
   ## Configure the files!
   home.file = {
-    ".background".source = ./theme/background;
+    # ".background".source = ./theme/background;
+     ".background".source = config.stylix.image;
   };
 }
