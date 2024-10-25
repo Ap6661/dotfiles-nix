@@ -1,5 +1,4 @@
 { pkgs, config, ... }:
-
 {
   imports =
     [
@@ -31,6 +30,9 @@
       base0F = "#753A36";
     };
     image = ./user/theme/background;
+    # image = pkgs.runCommand "image.png" {} '' 
+    #   ${pkgs.imagemagick}/bin/magick convert ${./user/theme/bg.jpg} -fill "${config.stylix.base16Scheme.base00}" -colorize 60 $out
+    # '';
   };
 
 ## USE FLAKES!
