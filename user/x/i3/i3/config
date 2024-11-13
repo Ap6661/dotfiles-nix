@@ -130,8 +130,8 @@ bindsym $mod+a focus parent
 ## Scrachpad :
 ##
 
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+Escape move scratchpad
+bindsym $mod+Escape scratchpad show
 
 
 bindsym $mod+Tab workspace back_and_forth
