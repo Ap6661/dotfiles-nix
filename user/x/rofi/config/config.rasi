@@ -2,7 +2,7 @@ configuration{
   font: "Hack Nerd Font Mono 12";
   line-margin: 10;
 
-  dip: 150;
+  dpi: 150;
 
   modi: "run,window,ssh";
   terminal: "wezterm";
