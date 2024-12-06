@@ -24,7 +24,6 @@ vec4 window_shader() {
     // vec4 color = texture(tex, texcoord);
     vec4 color = texelFetch(tex, ivec2(texcoord), 0);
 
-    // Calculate border width based on window size
     float borderWidth = 5.0;
     vec2 texSize = textureSize(tex, 0);
 
