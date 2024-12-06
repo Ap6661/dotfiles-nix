@@ -36,7 +36,6 @@ font pango:Hack Nerd Font Mono 20
 
 exec nitrogen --restore
 exec picom &
-exec_always pkill ..xborders-wrap ; xborders -c ~/.config/i3/xborders.json &
 exec eww open powermenu
 exec_always eww reload
 exec xinput | grep Touchpad | awk -F "id=" '{print$2}' | awk '{print$1}' | xargs -I id xinput set-prop id "libinput Disable While Typing Enabled" 1

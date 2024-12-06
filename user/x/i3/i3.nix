@@ -25,9 +25,6 @@ in
           picom
           # ( pkgs.callPackage ./picom.nix {  } )
 
-          xborders
-          libnotify
-
           brightnessctl
           flameshot
         ];
@@ -63,13 +60,6 @@ in
       $base0E: ${config.stylix.base16Scheme.base0E};
       $base0F: ${config.stylix.base16Scheme.base0F};
       '';
-      ".config/i3/xborders.json".text = /* json */ ''
-        {
-          "border-rgba": "${config.stylix.base16Scheme.base0E}AA"
-        }
-      '';
-
-      ".xsession".source = ./.xsession;
     };
 
   };
