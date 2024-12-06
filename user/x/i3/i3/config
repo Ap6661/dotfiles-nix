@@ -30,7 +30,7 @@ set $resize_up o
 set $resize_right p
 
 gaps inner 10
-default_border pixel 0
+default_border pixel 5
 
 font pango:Hack Nerd Font Mono 20
 
