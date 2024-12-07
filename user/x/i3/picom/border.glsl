@@ -30,7 +30,7 @@ vec4 window_shader() {
     float sdf = sdRoundedBox(texcoord, texSize, corner_radius);
 
     if (sdf >= -borderWidth && sdf <= 0) {
-      return default_post_processing(vec4(0.746094, 0.0, 0.746094, opacity) * (1 - dim));
+      return vec4(0.746094, 0.0, 0.746094, opacity) * (1 - dim);
     }
   
     // Apply default post-processing
