@@ -5,7 +5,8 @@
 
   /* Here be ~Dragons~ packages */
   home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; })
+    pkgs.nerd-fonts.hack
+    pkgs.nerd-fonts.fira-code
   ];
 
   programs.mpv.enable = true;

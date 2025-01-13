@@ -8,7 +8,8 @@ in
   };
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.hack
     ];
     home-manager.users.apnda = {
       programs.wezterm = {
