@@ -30,7 +30,32 @@ vec4 window_shader() {
     float sdf = sdRoundedBox(texcoord, texSize, corner_radius);
 
     if (sdf >= -borderWidth && sdf <= 0) {
-      return vec4(0.746094, 0.0, 0.746094, opacity) * (1 - dim);
+
+      vec2 px = texcoord.xy;
+      vec2 wh = texSize.xy;
+      float halfheight = wh.y/2.0;
+      float halfwidth = wh.x/2.0;
+
+      ivec2 coords = ivec2(texSize.x/2, texSize.y - 1);
+
+      if (px.y < halfheight) 
+      {
+        coords = ivec2(texSize.x/2, 1);
+      }
+      if (px.x < halfwidth && abs(halfheight - px.y) <= halfheight - px.x) 
+      {
+        coords = ivec2(1, texSize.y/2);
+      } 
+      else if (px.x > halfwidth && halfheight - abs(halfheight - px.y) >= wh.x - px.x) 
+      {
+        coords = ivec2(texSize.x - 1, texSize.y/2);
+      } 
+      else if (px.y < halfheight) 
+      {
+        coords = ivec2(texSize.x/2, 1);
+      }
+
+      return default_post_processing(texelFetch(tex, coords, 0));
     }
   
     // Apply default post-processing
