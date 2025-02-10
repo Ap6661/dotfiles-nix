@@ -168,6 +168,16 @@
         (writers.writeBashBin "myBashScript" ''
          echo Hello
          '')
+
+        (writers.writeBashBin "hmex" ''
+          mkdir output
+          echo '${builtins.toJSON (map (x:
+                config.home-manager.users.apnda.home.file."${x}".target)
+              (builtins.attrNames config.home-manager.users.apnda.home.file))}' |
+          nix run nixpkgs#jq -- ".[]" |
+          xargs -I {} sh -c "(find ~/{}/* || echo ~/{})" 2> /dev/null |
+          xargs -I {} sh -c "mkdir -p output\$(dirname {}); cat {} > output{}" 2> /dev/null
+          '')
         (stdenv.mkDerivation {
          name = "test package";
          src = ./.;
