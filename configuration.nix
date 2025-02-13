@@ -12,24 +12,25 @@
   stylix = {
     enable = true;
     base16Scheme = {
-      base00 = "#0E0014";
-      base01 = "#1A1326";
-      base02 = "#3C2945";
-      base03 = "#604766";
-      base04 = "#83678A";
-      base05 = "#AB86AD";
-      base06 = "#D4A9D4";
-      base07 = "#FFD6FF";
-      base08 = "#F00000";
-      base09 = "#EFFF75";
-      base0A = "#ABED55";
-      base0B = "#34F900";
-      base0C = "#00B3C7";
-      base0D = "#0085C7";
-      base0E = "#BF00FB";
-      base0F = "#753A36";
+      base00 = "#000000";
+      base01 = "#1a0c14";
+      base02 = "#321c29";
+      base03 = "#533144";
+      base04 = "#7c4d68";
+      base05 = "#af6e92";
+      base06 = "#cda3b9";
+      base07 = "#ecdfe6";
+      base08 = "#e07d8b";
+      base09 = "#e0957e";
+      base0A = "#e0c87e";
+      base0B = "#84e07e";
+      base0C = "#7ee0d8";
+      base0D = "#7e8ee0";
+      base0E = "#e07ece";
+      base0F = "#b26e44";
     };
-    image = ./user/theme/background;
+    image = config.lib.stylix.pixel "base03";
+    # image = ./user/theme/background;
     # image = pkgs.runCommand "image.png" {} '' 
     #   ${pkgs.imagemagick}/bin/magick convert ${./user/theme/bg.jpg} -fill "${config.stylix.base16Scheme.base00}" -colorize 60 $out
     # '';
