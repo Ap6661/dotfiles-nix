@@ -194,9 +194,9 @@ mode "freeze" {
   bindsym $mod+grave mode "freeze"
 
 
-assign [class="firefox"] -> $ws3
-assign [class="discord"] -> $ws4
-assign [class="TelegramDesktop"] -> $ws4
+assign [class="firefox"] $ws3
+assign [class="discord"] $ws4
+assign [class="TelegramDesktop"] $ws4
 for_window [class="TelegramDesktop"] resize set width 20 ppt
 for_window [title="Media viewer"] floating enable
 
