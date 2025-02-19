@@ -21,6 +21,7 @@ in
           wmctrl
           beats
           i3status
+          i3-swallow
 
           picom
           # ( pkgs.callPackage ./picom.nix {  } )
