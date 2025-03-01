@@ -36,7 +36,7 @@ title_align center
 
 font pango:Hack Nerd Font Mono 20
 
-exec nitrogen --restore
+exec_always nitrogen --restore
 exec picom &
 exec eww open powermenu
 exec_always eww reload
@@ -194,7 +194,7 @@ mode "freeze" {
   bindsym $mod+grave mode "freeze"
 
 
-assign [class="firefox"] $ws3
+assign [class="firefox" instance="^(?!Devtools).*"] $ws3
 assign [class="discord"] $ws4
 assign [class="TelegramDesktop"] $ws4
 for_window [class="TelegramDesktop"] resize set width 20 ppt
