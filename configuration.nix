@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 let
 c = {
   base00 = "#000000";
@@ -191,6 +191,10 @@ in
         wget
         (writers.writeBashBin "myBashScript" ''
          echo Hello
+         '')
+
+        (writers.writeBashBin "revert-specialization" ''
+         $(nix eval --read-only --raw ${inputs.self}\#nixosConfigurations.$(hostname).config.system.build.toplevel.outPath)/bin/switch-to-configuration test
          '')
 
         (writers.writeBashBin "hmex" ''
