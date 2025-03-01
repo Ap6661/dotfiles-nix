@@ -12,8 +12,8 @@ in
 
       # Used for running discord the first time or when vencord breaks
       (writers.writeBashBin "vanillaDiscord" ''
-       pkill .Discord-wrapp 
-       export NIXPKGS_ALLOW_UNFREE=1; nix run nixpkgs#discord --impure
+        pkill .Discord-wrapp 
+        export NIXPKGS_ALLOW_UNFREE=1; nix run nixpkgs#discord --impure
       '')
 
       telegram-desktop
