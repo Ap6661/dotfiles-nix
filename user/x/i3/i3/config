@@ -46,6 +46,8 @@ exec xinput | grep Touchpad | awk -F "id=" '{print$2}' | awk '{print$1}' | xargs
 set $refresh_i3status killall -SIGUSR1 i3status
 
 bindsym Print exec "flameshot gui"
+bindsym Ctrl+Print exec "flameshot screen --region $(xdotool getactivewindow getwindowgeometry | xargs echo | sed -e 's/.*Position: \(.*\),\(.*\) (.*Geometry: \(.*\)/\3+\1+\2/')"
+bindsym Ctrl+Shift+Print exec "flameshot screen"
 
 # Throw mouse
 bindsym $mod+t exec xdotool mousemove 0 0
