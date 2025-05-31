@@ -98,6 +98,7 @@ in
       efi.canTouchEfiVariables = true;
     };
     binfmt.emulatedSystems = [ "armv7l-linux" ];
+    supportedFilesystems = [ "ntfs" ];
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -170,6 +171,10 @@ in
   environment = {
     systemPackages = with pkgs; [
 
+      (ffmpeg.override {
+       withXcb = true;
+       withCaca = true;
+       })
 
       # SDDM theme
       (where-is-my-sddm-theme.override {
@@ -193,7 +198,7 @@ in
         echo Hello
       '')
 
-      (writers.writeBashBin "revert-specialization" ''
+      (writers.writeBashBin "revert-specialisation" ''
         $(nix eval --read-only --raw ${inputs.self}\#nixosConfigurations.$(hostname).config.system.build.toplevel.outPath)/bin/switch-to-configuration test
       '')
 

@@ -78,6 +78,27 @@
               ./user/game.nix
             ];
           };
+          nixos-desktop = lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = {
+              inherit nixos-hardware;
+              inherit home-manager;
+              inherit inputs;
+            };
+            modules = [
+              ./configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.apnda = import ./user/home.nix;
+              }
+              # ./hardware-configuration/framework.nix
+              ./user/game.nix
+              inputs.nvim.nixosModules.nvim
+              inputs.stylix.nixosModules.stylix
+            ];
+          };
         };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     };
