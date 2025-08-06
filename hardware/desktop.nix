@@ -39,6 +39,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  
+  programs.steam.gamescopeSession.enable = true;
 # boot.kernelParams = [ "resume=/swapfile" "resume_offset=423411712" ];
 # boot.resumeDevice = "/dev/disk/by-uuid/79bcf5e9-d6b7-4b39-b509-41336f8fbd55";
 }

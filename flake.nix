@@ -15,7 +15,6 @@
       stylix = {
         url = "github:danth/stylix";
         inputs.nixpkgs.follows = "nixpkgs";
-        inputs.home-manager.follows = "home-manager";
       };
 
 
@@ -93,7 +92,8 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.apnda = import ./user/home.nix;
               }
-              # ./hardware-configuration/framework.nix
+              ./hardware-configuration/desktop.nix
+              ./hardware/desktop.nix
               ./user/game.nix
               inputs.nvim.nixosModules.nvim
               inputs.stylix.nixosModules.stylix
