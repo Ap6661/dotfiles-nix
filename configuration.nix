@@ -94,7 +94,10 @@ in
   boot = {
     # Bootloader.
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false;
+      limine = {
+        enable = true;
+      };
       efi.canTouchEfiVariables = true;
     };
     binfmt.emulatedSystems = [ "armv7l-linux" ];
