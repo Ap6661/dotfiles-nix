@@ -233,6 +233,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "dialout"
     ];
     initialPassword = "ChangeMe";
   };
