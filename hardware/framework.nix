@@ -13,10 +13,9 @@
   boot.resumeDevice = "/dev/disk/by-uuid/79bcf5e9-d6b7-4b39-b509-41336f8fbd55";
   security.protectKernelImage = false;
 
-
-  services.logind = {
-    powerKey = "hibernate";
-    lidSwitch = "suspend";
+  services.logind.settings.Login = {
+    HandlePowerKey = "hibernate";
+    HandleLidSwitch = "suspend";
   };
 
   services.udev.extraRules = '' 
