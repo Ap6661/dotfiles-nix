@@ -16,11 +16,15 @@ in
         enable = true;
         extraConfig = /*lua*/ ''
           local wezterm = require 'wezterm'
+          local handle = io.popen("echo $XDG_SESSION_TYPE")
+          local result = handle:read("*a")
+          handle:close()
+
           return {
             font = wezterm.font 'FiraCode Nerd Font Mono',
                  use_fancy_tab_bar = false,
                  hide_tab_bar_if_only_one_tab = true,
-                 window_decorations = "NONE",
+                 window_decorations = (result == "wayland\n") and "NONE" or "RESIZE",
                  window_padding = {
                    left    = 15,
                    right   = 15,
