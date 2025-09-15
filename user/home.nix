@@ -10,7 +10,51 @@
   ];
 
   programs.mpv.enable = true;
-  programs.firefox.enable = true;
+
+  programs.firefox = {
+    enable = true;
+    profiles = {
+      "main" = {
+        name = "main";
+        extensions = {
+          force = true;
+          packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+            darkreader
+            ublock-origin
+            proton-pass
+          ];
+          settings = {
+            "FirefoxColor@mozilla.com".force = true;
+          };
+        };
+
+        search = {
+          force = true;
+          default = "ddg";
+        };
+
+        settings = {
+          "full-screen-api.ignore-widgets" = true;
+          "layout.css.devPixelsPerPx" = 1.5;
+          "browser.tabs.closeWindowWithLastTab" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "browser.newtabpage.activity-stream.showSearch" = false;
+          "browser.newtabpage.activity-stream.showWeather" = false;
+
+          # privacy
+          "browser.search.suggest.enabled" = false;
+          "privacy.annotate_channels.strict_list.enabled" = true;
+          "privacy.clearOnShutdown_v2.cookiesAndStorage" = true;
+          "datareporting.healthreport.uploadEnabled" = false;
+        };
+      };
+    };
+  };
+  stylix.targets.firefox = {
+    colorTheme.enable = true;
+    profileNames = [ "main" ];
+  };
 
   ## Configure the files!
   home.file = {

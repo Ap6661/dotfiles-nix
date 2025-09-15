@@ -17,6 +17,10 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
+      firefox-addons = {
+        url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
 
       nvim = {
         url = "github:ap6661/dotfiles-nvim";
@@ -45,9 +49,12 @@
               ./configuration.nix
               home-manager.nixosModules.home-manager
               {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.apnda = import ./user/home.nix;
+                home-manager = {
+                  extraSpecialArgs = { inherit inputs; };
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.apnda = import ./user/home.nix;
+                };
               }
               ./hardware/framework.nix
               ./hardware-configuration/framework.nix
@@ -61,6 +68,7 @@
             specialArgs = {
               inherit nixos-hardware;
               inherit home-manager;
+              inherit inputs;
             };
             modules = [
               ./configuration.nix
@@ -68,9 +76,12 @@
               inputs.stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.apnda = import ./user/home.nix;
+                home-manager = {
+                  extraSpecialArgs = { inherit inputs; };
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.apnda = import ./user/home.nix;
+                };
               }
               ./hardware/gpd.nix
               ./hardware-configuration/gpd.nix
@@ -88,9 +99,12 @@
               ./configuration.nix
               home-manager.nixosModules.home-manager
               {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.apnda = import ./user/home.nix;
+                home-manager = {
+                  extraSpecialArgs = { inherit inputs; };
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.apnda = import ./user/home.nix;
+                };
               }
               ./hardware-configuration/desktop.nix
               ./hardware/desktop.nix
