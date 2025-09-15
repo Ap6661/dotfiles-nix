@@ -28,6 +28,15 @@
   services.hyprpaper.enable = true;
   programs.jq.enable = true;
 
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = { 
+        useGrimAdapter = true;
+      };
+    };
+  }; 
+
   programs.mpv = {
     enable = true;
     package = pkgs.mpv-unwrapped.wrapper {
