@@ -1,9 +1,16 @@
-{ pkgs, config, home-manager, ... }:
+{
+  pkgs,
+  config,
+  home-manager,
+  inputs,
+  ...
+}:
 {
   home.stateVersion = "23.11";
   fonts.fontconfig.enable = true;
 
   /* Here be ~Dragons~ packages */
+  # Here be ~Dragons~ packages
   home.packages = [
     pkgs.nerd-fonts.hack
     pkgs.nerd-fonts.fira-code
