@@ -9,12 +9,24 @@
   home.stateVersion = "23.11";
   fonts.fontconfig.enable = true;
 
-  /* Here be ~Dragons~ packages */
   # Here be ~Dragons~ packages
   home.packages = [
     pkgs.nerd-fonts.hack
     pkgs.nerd-fonts.fira-code
   ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprscrolling
+    ];
+    extraConfig = builtins.readFile ./wayland/hypr/hyprland.conf;
+    xwayland = {
+      enable = true;
+    };
+  };
+  services.hyprpaper.enable = true;
+  programs.jq.enable = true;
 
   programs.mpv = {
     enable = true;
