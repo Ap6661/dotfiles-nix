@@ -20,7 +20,7 @@ in
             font = wezterm.font 'FiraCode Nerd Font Mono',
                  use_fancy_tab_bar = false,
                  hide_tab_bar_if_only_one_tab = true,
-                 window_decorations = "RESIZE",
+                 window_decorations = "NONE",
                  window_padding = {
                    left    = 15,
                    right   = 15,
