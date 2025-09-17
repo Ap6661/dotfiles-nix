@@ -101,7 +101,7 @@ in
       };
       efi.canTouchEfiVariables = true;
     };
-    binfmt.emulatedSystems = [ "armv7l-linux" ];
+    binfmt.emulatedSystems = [ "armv7l-linux" "x86_64-windows" ];
     supportedFilesystems = [ "ntfs" ];
   };
 
