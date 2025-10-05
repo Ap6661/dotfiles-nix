@@ -77,7 +77,7 @@
           )
 
           (deflayer arrow
-           grv S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-4   S-9  S-0    -    =    bspc
+           grv S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8   S-9  S-0    -    =    bspc
            tab  1    2    3    4    5    6    7    8     9    0    [    ]    \
            @ect a    s    d @sqn    g left down   up right    ;    '    ret
            @osh @gam @abr    c    v    b    n    m    ,     .    /    rsft
