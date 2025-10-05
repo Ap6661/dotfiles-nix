@@ -58,6 +58,25 @@
         base0E = "#f6c177";
         base0F = "#56526e";
       }
+      {
+        name = "Club";
+        base00 = "#17312f"; ## #17312f  ----
+        base01 = "#225649"; ## #225649  ---
+        base02 = "#286856"; ## #286856  --
+        base03 = "#2d7a62"; ## #2d7a62  -
+        base04 = "#389f7b"; ## #389f7b  +
+        base05 = "#42c394"; ## #42c394  ++
+        base06 = "#53c89e"; ## #53c89e  +++
+        base07 = "#63cda7"; ## #63cda7  ++++
+        base08 = "#db3838"; ## #db3838        red
+        base09 = "#de8b26"; ## #de8b26        orange
+        base0A = "#dcdf25"; ## #dcdf25        yellow
+        base0B = "#44de26"; ## #44de26        green
+        base0C = "#26adde"; ## #26adde        aqua
+        base0D = "#264bde"; ## #264bde        blue
+        base0E = "#d226de"; ## #d226de        purple
+        base0F = "#a44b03"; ## #a44b03        brown
+      }
     ]
     (c:
       {
