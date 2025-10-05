@@ -13,7 +13,9 @@
   home.packages = [
     pkgs.nerd-fonts.hack
     pkgs.nerd-fonts.fira-code
-  ];
+  ] ++ (with inputs.nixos-fonts.packages.x86_64-linux; [
+    azukifont
+  ]);
 
   wayland.windowManager.hyprland = {
     enable = true;
