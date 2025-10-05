@@ -17,19 +17,6 @@
     azukifont
   ]);
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    plugins = with pkgs.hyprlandPlugins; [
-      hyprscrolling
-    ];
-    extraConfig = builtins.readFile ./wayland/hypr/hyprland.conf;
-    xwayland = {
-      enable = true;
-    };
-  };
-  services.hyprpaper.enable = true;
-  programs.jq.enable = true;
-
   services.flameshot = {
     enable = true;
     settings = {

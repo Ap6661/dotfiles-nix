@@ -68,8 +68,6 @@ in
   i3.enable = true;
   rofi.enable = true;
 
-  programs.hyprland.enable = true;
-
   programs.dconf.enable = true;
 
   wezterm.enable = true;
