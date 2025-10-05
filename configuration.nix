@@ -81,6 +81,10 @@ in
 
   ####################
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 
   i18n.inputMethod = {
     enable = true; 
@@ -182,6 +186,8 @@ in
 
   environment = {
     systemPackages = with pkgs; [
+
+      distrobox
 
       (ffmpeg.override {
        withXcb = true;
