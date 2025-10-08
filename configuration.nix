@@ -186,6 +186,7 @@ in
     systemPackages = with pkgs; [
 
       distrobox
+      qemu
 
       (ffmpeg.override {
        withXcb = true;
