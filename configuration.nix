@@ -156,7 +156,7 @@ in
     displayManager = {
       sddm = {
         enable = true;
-        theme = "where_is_my_sddm_theme_qt5";
+        theme = "where_is_my_sddm_theme";
       };
     };
   };
@@ -200,7 +200,7 @@ in
           passwordCursorColor = "${config.stylix.base16Scheme.base01}";
           passwordTextColor = "${config.stylix.base16Scheme.base0E}";
         };
-        variants = [ "qt5" ];
+        variants = [ "qt6" ];
       })
 
 
