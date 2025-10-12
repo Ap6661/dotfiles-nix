@@ -1,4 +1,4 @@
-{ pkgs, nixos-hardware, ... }:
+{ pkgs, nixos-hardware, home-manager, ... }:
 {
 
   imports = [
@@ -102,5 +102,7 @@
        ${pkgs.xorg.xinput}/bin/xinput set-prop PIXA3854:00\ 093A:0274\ Touchpad libinput\ Natural\ Scrolling\
     Enabled 1
   '';
+
+  home-manager.users.apnda.programs.firefox.profiles."main".settings."layout.css.devPixelsPerPx" = 1.5;
 
 }

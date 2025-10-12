@@ -59,12 +59,12 @@
 
         settings = {
           "full-screen-api.ignore-widgets" = true;
-          "layout.css.devPixelsPerPx" = 1.5;
           "browser.tabs.closeWindowWithLastTab" = false;
           "browser.newtabpage.activity-stream.feeds.topsites" = false;
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
           "browser.newtabpage.activity-stream.showSearch" = false;
           "browser.newtabpage.activity-stream.showWeather" = false;
+          "extensions.autoDisableScopes" = 0;
 
           # privacy
           "browser.search.suggest.enabled" = false;

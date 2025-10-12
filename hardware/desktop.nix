@@ -5,9 +5,6 @@
 
   hardware.graphics.enable = true;
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
   hardware.nvidia = {
 
   # Modesetting is required.
@@ -43,9 +40,18 @@
     steam.gamescopeSession.enable = true;
     noisetorch.enable = true;
   };
-  services.xserver.displayManager.setupCommands = ''
-	  ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --auto --left-of DP-3
-	  '';
+
+  services = {
+  # Load nvidia driver for Xorg and Wayland
+    xserver.videoDrivers = ["nvidia"];
+    xserver.displayManager.setupCommands = ''
+      ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --auto --left-of DP-3
+      '';
+    monado.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [ wlx-overlay-s ];
+
 # boot.kernelParams = [ "resume=/swapfile" "resume_offset=423411712" ];
 # boot.resumeDevice = "/dev/disk/by-uuid/79bcf5e9-d6b7-4b39-b509-41336f8fbd55";
 }
