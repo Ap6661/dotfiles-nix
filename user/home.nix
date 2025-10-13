@@ -46,6 +46,7 @@
             darkreader
             ublock-origin
             proton-pass
+            sponsorblock
           ];
           settings = {
             "FirefoxColor@mozilla.com".force = true;
