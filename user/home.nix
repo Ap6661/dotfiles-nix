@@ -66,6 +66,9 @@
           "browser.newtabpage.activity-stream.showWeather" = false;
           "extensions.autoDisableScopes" = 0;
 
+          # Disable password saving 
+          "signon.rememberSignons" = false;
+
           # privacy
           "browser.search.suggest.enabled" = false;
           "privacy.annotate_channels.strict_list.enabled" = true;
