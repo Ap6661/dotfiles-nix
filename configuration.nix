@@ -28,6 +28,7 @@ in
       ./user/general/cli/zsh/zsh.nix
       ./user/general/gui/messaging/messaging.nix
       ./user/general/gui/wezterm/wezterm.nix
+      ./user/general/gui/anki
       ./special.nix
     ];
   stylix = {
@@ -75,6 +76,7 @@ in
   zsh.enable = true;
   btop.enable = true;
 
+  anki.enable = true;
   messaging.enable = true;
 
   ####################
