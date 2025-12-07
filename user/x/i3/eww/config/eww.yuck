@@ -55,7 +55,7 @@
 
 
   (label 
-   :text {time.weekday + " " + time.month + " " + time.day + "|" + time.hour + ":" + time.min + "|" + "󰁥" + beats }
+   :text {time.weekday + " " + time.month + " " + time.day + "│" + time.hour + ":" + time.min + "│" + "󰁥" + beats }
    :class "inner"
   )
 
