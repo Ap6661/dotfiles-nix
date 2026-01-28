@@ -110,6 +110,7 @@ in
       systemd-boot.enable = false;
       limine = {
         enable = true;
+        enableEditor = true;
       };
       efi.canTouchEfiVariables = true;
     };
