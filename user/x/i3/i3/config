@@ -41,8 +41,8 @@ exec picom &
 exec fcitx5 -d 
 # exec eww open powermenu
 # exec_always eww reload
-bindcode release 133 exec eww close-all
-bindcode --release 133 exec eww open powermenu
+bindcode --release 133 exec eww close-all
+bindcode 133 exec eww open powermenu
 
 
 exec xinput | grep Touchpad | awk -F "id=" '{print$2}' | awk '{print$1}' | xargs -I id xinput set-prop id "libinput Disable While Typing Enabled" 1
