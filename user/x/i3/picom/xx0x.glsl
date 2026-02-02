@@ -51,7 +51,7 @@ vec4 window_shader() {
         coords = ivec2(texSize.x - 1, texSize.y/2);
       } 
 
-      vec4 c = default_post_processing(vec4 (0.0, 0.0, 0.0, 0.0));
+      vec4 c = default_post_processing(vec4 (0.0, 0.0, 0.0, 1.0));
       c.rgb = texelFetch(tex, coords, 0).rgb;
       return c;
       // return vec4 (1.0, mod(sdf / borderWidth, 1.0), 1.0, 1.0);
