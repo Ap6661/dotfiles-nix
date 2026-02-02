@@ -29,10 +29,16 @@ set $resize_down i
 set $resize_up o
 set $resize_right p
 
-gaps outer -10
-gaps inner 20
-default_border pixel 5
+set $border 3
+
+# gaps outer 5
+gaps inner 10
+default_border pixel $border
+hide_edge_borders smart
 title_align center
+
+# CycLe border
+bindsym $mod+g exec i3-msg -t run_command border toggle
 
 font pango:Hack Nerd Font Mono 20
 
@@ -211,7 +217,7 @@ mode "freeze" {
 
 assign [class="firefox" instance="^(?!Devtools).*"] $ws3
 assign [class="discord"] $ws4
-for_window [class="discord"] border pixel 5
+for_window [class="discord"] border pixel $border
 assign [class="TelegramDesktop"] $ws4
 for_window [class="TelegramDesktop"] resize set width 20 ppt
 for_window [title="Media viewer"] floating enable
