@@ -182,24 +182,6 @@
         "type": "github"
       }
     },
-    "nixos-fonts": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1738817211,
-        "narHash": "sha256-7fn9gP1kNlGt99uzfKv/pC1r218nsKCZUQs/8u1Umys=",
-        "owner": "Takamatsu-Naoki",
-        "repo": "nixos-fonts",
-        "rev": "600db74e940f9e5ac8db8d48ee5c852facc4c513",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Takamatsu-Naoki",
-        "repo": "nixos-fonts",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1769302137,
@@ -217,22 +199,6 @@
       }
     },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1769170682,
-        "narHash": "sha256-oMmN1lVQU0F0W2k6OI3bgdzp2YOHWYUAw79qzDSjenU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c5296fdd05cfa2c187990dd909864da9658df755",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1769170682,
         "narHash": "sha256-oMmN1lVQU0F0W2k6OI3bgdzp2YOHWYUAw79qzDSjenU=",
@@ -299,9 +265,8 @@
       "inputs": {
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
-        "nixos-fonts": "nixos-fonts",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nvim": "nvim",
         "stylix": "stylix"
       }

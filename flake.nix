@@ -22,9 +22,6 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-
-      nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
-
       nvim = {
         url = "github:ap6661/dotfiles-nvim";
         inputs = {
