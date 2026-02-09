@@ -45,9 +45,10 @@ font pango:Hack Nerd Font Mono 20
 exec_always nitrogen --restore
 exec picom &
 exec fcitx5 -d 
+exec sh ~/.config/eww/getworkspaces.sh
 # exec eww open powermenu
 # exec_always eww reload
-bindcode --release 133 exec eww close-all
+bindcode --release 133 exec eww close powermenu
 bindcode 133 exec eww open powermenu
 
 

@@ -209,10 +209,7 @@
    )
 )
 
-(deflisten active-workspaces 
-  :initial '["1"]'
-  "sh ~/.config/eww/getworkspaces.sh"
-)
+(defvar active-workspaces  '["1"]')
 
 (deflisten current-workspace
   :initial '1'
