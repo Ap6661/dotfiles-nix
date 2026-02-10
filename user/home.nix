@@ -41,9 +41,11 @@
           force = true;
           packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
             darkreader
-            ublock-origin
+            adnauseam # ublock-origin
             proton-pass
             sponsorblock
+            youtube-shorts-block
+            yomitan
           ];
           settings = {
             "FirefoxColor@mozilla.com".force = true;
@@ -70,7 +72,7 @@
           # privacy
           "browser.search.suggest.enabled" = false;
           "privacy.annotate_channels.strict_list.enabled" = true;
-          "privacy.clearOnShutdown_v2.cookiesAndStorage" = true;
+          "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
           "datareporting.healthreport.uploadEnabled" = false;
         };
       };
