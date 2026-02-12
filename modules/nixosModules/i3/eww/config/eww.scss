@@ -1,0 +1,73 @@
+@import "./stylix.scss";
+
+* {
+  all: unset;
+  color: $base05;
+  font-family: "Hack Nerd Font Mono";
+  font-size: 1.2em;
+}
+
+.transparent {
+  padding: 8;
+}
+
+.bx {
+  background: $base00;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.inner {
+  background: $base02;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border-radius: 20px;
+}
+
+.workspace-active {
+  background: $base0E;
+  color: $base02;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+
+.workspace-inactive {
+  background: $base01;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.workspace-box {
+  background: $base01;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 20px;
+}
+
+.contained-label {
+  background: $base01;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container {
+  background: $base01;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 20px;
+}
+
+
+
+
+
+
+

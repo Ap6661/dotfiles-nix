@@ -1,0 +1,285 @@
+(defwindow powermenu
+ :monitor 0
+ :windowtype "dock"
+ :stacking "fg"
+ :wm-ignore false
+ :geometry (geometry
+   :width "100%"
+   :height "2%"
+   :anchor "top center")
+ (powermenu_layout)
+ )
+
+(defwidget powermenu_layout []
+ (box
+  :orientantion "horizontal"
+  :class "transparent"
+  :spacing 160
+ (box 
+  :orientation "horizontal" 
+  :class "bx"
+
+  ;(centerbox 
+  ;  :orientation "h"
+  ;  (label :text 1)
+  ;  ;(circular-progress :value {EWW_BATTERY.BAT1.capacity} :thickness "20")
+  ;  (label :text 2)
+  ;  (label :text 3)
+  ;)
+
+
+  (_workspaces
+   :halign "start"
+  )
+
+
+  (box
+    :halign "end"
+    :space-evenly false
+    :spacing 16
+    :class "container"
+
+   ;(label :text active-window)
+   (_i3-mode)
+
+
+
+   (_network
+    :strength net
+    :offline "󰣼"
+    :excellent "󰣺"
+    :good "󰣸"
+    :okay "󰣶"
+    :slow "󰣴"
+   )
+
+
+  (label 
+   :text {time.weekday + " " + time.month + " " + time.day + "│" + time.hour + ":" + time.min + "│" + "󰁥" + beats }
+   :class "inner"
+  )
+
+  (_volume 
+  :low    "󰖀"
+  :medium "󱄠"
+  :high   "󰕾"
+  :off    "󰖁"
+  )
+
+  (for i in battery-list
+    (_battery
+     :visible {EWW_BATTERY[i] != "null"}
+     :capacity {EWW_BATTERY[i].capacity}
+     :charging {EWW_BATTERY[i].status}
+     :icons {'
+      { 
+      "Charging": 
+        { 
+          "reallylow": "󰂎󱐋", 
+          "low": "󱊡󱐋", 
+          "medium": "󱊢󱐋", 
+          "high": "󱊣󱐋"
+        }, 
+      "Discharging": 
+        { 
+          "reallylow": "󰂎", 
+          "low": "󱊡", 
+          "medium": "󱊢", 
+          "high": "󱊣"
+        }, 
+      "Not charging": 
+        { 
+          "reallylow": "󰂎 ", 
+          "low": "󱊡 ", 
+          "medium": "󱊢 ", 
+          "high": "󱊣 "
+        } 
+      }
+      '}  ))
+  
+    )
+  )
+ )
+)
+
+
+
+
+
+(defwidget _network [strength offline excellent good okay slow]
+   (label :text 
+    {
+    strength == "" ? offline :
+    strength < 26 ? slow : 
+    strength < 51 ? okay : 
+    strength < 76 ? good : excellent
+    }
+   :class "inner"
+   )
+)
+
+(defwidget _battery [ visible capacity charging icons ]
+   (label :visible visible
+     :text 
+    {
+    capacity + "% " +
+    (
+     capacity < 25 ? icons[charging]["reallylow"] : 
+     capacity < 51 ? icons[charging]["low"] : 
+     capacity < 76 ? icons[charging]["medium"] : icons[charging]["high"]
+    )
+    }
+   :class "inner"
+   )
+)
+
+(defvar battery-list {"[
+ \"BAT0\",
+ \"BAT1\",
+ \"BAT2\",
+ \"BAT3\",
+ \"BAT4\",
+ \"BAT5\",
+ \"BAT6\",
+ \"BAT7\",
+ \"BAT8\",
+ \"BAT9\",
+ \"BAT10\"]"})
+
+(defvar available-workspaces {"[
+ \"1\",
+ \"2\",
+ \"3\",
+ \"4\",
+ \"5\",
+ \"6\",
+ \"7\",
+ \"8\",
+ \"9\",
+ \"10\"]"})
+
+(defvar workspace-names {"[0,
+ \"\",
+ \"\",
+ \"\",
+ \"󰭹\",
+ \"5\",
+ \"6\",
+ \"7\",
+ \"8\",
+ \"9\",
+ \"10\"]"})
+
+(defwidget _workspaces []
+  (box
+   :class "workspace-box"
+   :space-evenly false
+   :spacing 8
+   :halign  "start"
+
+   (for index in {available-workspaces}
+    (_workspace-button 
+    :index index 
+    :width 90
+    ) 
+   )
+   ;(for entry in {captures(active-workspaces, "\"[0-9]+\"")}
+   ; (_workspace-button 
+   ; ;;------------------> VVV this is a bullshit fix here <--------------
+   ; :index {replace((entry+"")[0], "\"", "")} 
+   ; :entry entry
+   ; ) 
+   ;)
+  )
+)
+
+;(defwidget _workspace-button [index entry]
+;   (label 
+;   :class {"workspace-" + (captures(active-workspaces, "\"[0-9]+\"")[(captures(current-workspaces-index, "[0-9]+")[0][0])] == entry ? "active" : "inactive")}
+;   :text {workspace-names[index]}
+;   )
+;)
+
+(defwidget _workspace-button [index]
+   (label 
+   ;:text {captures(active-workspaces, "\"[0-9]+\"")[(captures(current-workspaces-index, "[0-9]+")[0][0])]}
+   :visible {arraylength(captures(active-workspaces, "\"" + index + "\"")) >= 1 || search(desktop-names, "[0-9]+")[search(current-workspace, "[0-9]")[0] + 1] == index } 
+   :class {"workspace-" + (search(desktop-names, "[0-9]+")[search(current-workspace, "[0-9]+")[0] + 1] == index ? "active" : "inactive")}
+   :text {workspace-names[index]}
+   )
+)
+
+(defvar active-workspaces  '["1"]')
+
+(deflisten current-workspace
+  :initial '1'
+  "xprop -root -spy _NET_CURRENT_DESKTOP"
+)
+
+(deflisten desktop-names
+  :initial '"1"'
+  "xprop -root -spy _NET_DESKTOP_NAMES"
+)
+
+
+(deflisten active-window
+  :initial ""
+  ;"xprop -spy -root | awk '/_NET_ACTIVE_WINDOW\\(/ {system(\"xprop -id \" $5)}' | awk -spy -F \"=\" '/_NET_WM_NAME/{print$2}'"
+  ;"xprop -spy -root | awk '/_NET_ACTIVE_WINDOW\\(/ {system('xprop -id ' $5)}' | awk -F '=' '/_NET_WM_NAME/{print$2}'"
+  ;"xprop -spy -root | awk '/_NET_ACTIVE_WINDOW\\(/ {system('xprop -id ' $5)}'"
+  "echo window name"
+)
+
+(defpoll time :interval "5s"
+ :initial `date +'{}'`
+ `date +'{"hour":"%H","min":"%M", "weekday":"%a", "month":"%b", "day":"%m/%d"}'`)
+
+(defpoll beats :interval "5s"
+ :initial `beats -ai`
+ `beats -ai`)
+
+(defpoll net :interval "100s"
+ :initial '0'
+  `nmcli -t -f SIGNAL,ACTIVE device wifi \
+  | awk -F':' '{if($2=="yes")print$1}'`
+)
+
+
+;
+; pipewire things
+;
+(defpoll volume :interval "3s"
+  :initial `0`
+  `wpctl get-volume @DEFAULT_AUDIO_SINK@ \
+  | awk '{printf "{\\\"volume\\\": \\\"" $2*100 "\\\",\\\"muted\\\": \\\"" $3 "\\\"}" }'`
+)
+
+(defwidget _volume [ low medium high off ]
+  (label
+    :class "inner"
+    :text {volume.volume + "% " + (
+     volume.muted == "[MUTED]" ? off :
+     volume.volume < 25 ? low : 
+     volume.volume < 75 ? medium : high
+    )}
+  )
+)
+
+
+;
+; I3 Specific things
+;
+
+(deflisten i3-mode
+  :initial '{"change":"default"}'
+  `i3-msg -t subscribe -m '[ "mode" ]'`
+)
+
+(defwidget _i3-mode []
+  (label 
+   :class "contained-label"
+   :visible {i3-mode.change != "default"}
+   :text {i3-mode.change}
+  )
+)
+

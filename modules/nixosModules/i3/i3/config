@@ -1,0 +1,232 @@
+## 
+##  Variables
+## 
+
+set $mod Mod1
+set $altmod Mod4
+set $menu rofi -show
+set $emoji rofi -modi emoji -show emoji
+set $term wezterm
+
+set $ws1  1
+set $ws2  2
+set $ws3  3
+set $ws4  4
+set $ws5  5
+set $ws6  6
+set $ws7  7
+set $ws8  8
+set $ws9  9
+set $ws10 10
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $resize_left u
+set $resize_down i
+set $resize_up o
+set $resize_right p
+
+set $border 3
+
+# gaps outer 5
+gaps inner 10
+default_border pixel $border
+hide_edge_borders smart
+title_align center
+
+# CycLe border
+bindsym $mod+g exec i3-msg -t run_command border toggle
+
+font pango:Hack Nerd Font Mono 20
+
+exec_always nitrogen --restore
+exec picom &
+exec fcitx5 -d 
+exec sh ~/.config/eww/getworkspaces.sh
+# exec eww open powermenu
+# exec_always eww reload
+bindcode --release 133 exec eww close powermenu
+bindcode 133 exec eww open powermenu
+
+
+exec xinput | grep Touchpad | awk -F "id=" '{print$2}' | awk '{print$1}' | xargs -I id xinput set-prop id "libinput Disable While Typing Enabled" 1
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+
+bindsym Print exec "flameshot gui"
+bindsym Ctrl+Print exec "flameshot screen --region $(xdotool getactivewindow getwindowgeometry | xargs echo | sed -e 's/.*Position: \(.*\),\(.*\) (.*Geometry: \(.*\)/\3+\1+\2/')"
+bindsym Ctrl+Shift+Print exec "flameshot screen"
+
+# Throw mouse
+bindsym $mod+t exec xdotool mousemove 0 0
+
+# Freeze Window
+bindsym $mod+Shift+f exec "PID=$(xdotool getactivewindow getwindowpid); [[ \\"$(ps -o state= -p $PID)\\" = T ]] && kill -CONT $PID || kill -STOP $PID"
+
+bindsym XF86AudioRaiseVolume  exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+ && $refresh_i3status
+bindsym XF86AudioLowerVolume  exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%- && $refresh_i3status
+bindsym XF86AudioMute         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $refresh_i3status
+bindsym XF86MonBrightnessUp   exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
+# start a terminal
+bindsym $mod+Shift+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+# start dmenu (a program launcher)
+bindsym $mod+Return exec $menu
+bindsym $altmod+period exec $emoji
+
+bindsym $altmod+l exec i3lock -c 000000
+# A more modern dmenu replacement is rofi:
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# There also is i3-dmenu-desktop which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installe.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Ctrl+$left mark swap; focus left; swap container with mark swap; unmark swap; focus left
+bindsym $mod+Ctrl+$up mark swap; focus up; swap container with mark swap; unmark swap; focus up
+bindsym $mod+Ctrl+$down mark swap; focus down; swap container with mark swap; unmark swap; focus down
+bindsym $mod+Ctrl+$right mark swap; focus right; swap container with mark swap; unmark swap; focus right
+
+# Move Workspace 
+bindsym $mod+Ctrl+Shift+$left move workspace to output left
+bindsym $mod+Ctrl+Shift+$down move workspace to output down
+bindsym $mod+Ctrl+Shift+$up move workspace to output up
+bindsym $mod+Ctrl+Shift+$right move workspace to output right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+x fullscreen toggle
+
+# toggle opacity of current window
+bindsym $mod+z exec picom-trans -t -c
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+Ctrl+Shift+I sticky toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+
+##
+## Scrachpad :
+##
+
+bindsym $mod+Shift+Escape move scratchpad
+bindsym $mod+Escape scratchpad show
+
+
+bindsym $mod+Tab workspace back_and_forth
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+r reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+Ctrl+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+q exec "i3-msg exit"
+
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+bindsym $mod+$resize_left resize shrink width 10 px or 10 ppt
+bindsym $mod+$resize_down resize grow height 10 px or 10 ppt
+bindsym $mod+$resize_up resize shrink height 10 px or 10 ppt
+bindsym $mod+$resize_right resize grow width 10 px or 10 ppt
+
+mode "freeze" {
+  bindsym $mod+grave mode "default"
+}
+  bindsym $mod+grave mode "freeze"
+
+
+assign [class="firefox" instance="^(?!Devtools).*"] $ws3
+assign [class="discord"] $ws4
+for_window [class="discord"] border pixel $border
+assign [class="TelegramDesktop"] $ws4
+for_window [class="TelegramDesktop"] resize set width 20 ppt
+for_window [title="Media viewer"] floating enable
+
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base0E $base0E $base00 $base0B $base0E
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07

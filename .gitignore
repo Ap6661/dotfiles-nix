@@ -1,1 +1,4 @@
 hardware-configurations.nix
+nixos-efi-vars.fd
+nixos.qcow2
+result
