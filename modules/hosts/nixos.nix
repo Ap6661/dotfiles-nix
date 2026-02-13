@@ -15,6 +15,8 @@ let
       config.flake.nixosModules."host-${host}"
       config.flake.nixosModules.core
 
+      inputs.nvim.nixosModules.nvim
+
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
