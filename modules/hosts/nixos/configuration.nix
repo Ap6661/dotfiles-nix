@@ -1,6 +1,10 @@
 { inputs, self, ... }@topLevel:
 {
-  flake.nixosModules.host-nixos = { pkgs, ... }: {
+  flake.nixosModules.host-nixos = { pkgs, config, ... }: 
+  # let
+  #   inherit (config.custom.constants) user;
+  # in
+  {
 
     imports = with topLevel.config.flake.nixosModules; [
       games
@@ -8,6 +12,15 @@
       sddm
 
       inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
+    ] ++ [
+      # inputs.home-manager.nixosModules.home-manager
+      # {
+      #   home-manager.users.${user} = {
+      #     imports = [
+      #       topLevel.config.flake.homeModules.i3
+      #     ];
+      #   };
+      # }
     ];
 
     powerManagement.enable = true;

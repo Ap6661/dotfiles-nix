@@ -18,11 +18,11 @@ in
       plugins = [ pkgs.rofi-emoji ];
     };
 
-    home-manager.users.apnda.home.file = {
-      ".config/rofi" = {
-        source = ./config;
-        recursive = true;
-      };
-    };
+    # home-manager.users.apnda.home.file = {
+    #   ".config/rofi" = {
+    #     source = ./config;
+    #     recursive = true;
+    #   };
+    # };
   };
 }
