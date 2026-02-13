@@ -10,6 +10,7 @@
       games
       i3
       sddm
+      messaging
 
       inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
     ] ++ [
