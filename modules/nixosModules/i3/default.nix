@@ -19,11 +19,12 @@
           imports = with topLevel.config.flake.homeModules; [
             i3
             launcher
-            # test
           ];
         };
       }
-    ];
+    ] ++ (with topLevel.config.flake.nixosModules; [
+        terminal
+    ]);
 
     services.xserver = {
       enable = true;
