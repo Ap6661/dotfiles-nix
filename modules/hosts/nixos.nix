@@ -14,6 +14,7 @@ let
     }
       config.flake.nixosModules."host-${host}"
       config.flake.nixosModules.core
+      config.flake.nixosModules.shell
 
       inputs.nvim.nixosModules.nvim
 
