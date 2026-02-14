@@ -1,9 +1,9 @@
 { inputs, self, ... }@topLevel:
 {
   flake.nixosModules.host-nixos = { pkgs, config, ... }: 
-  # let
-  #   inherit (config.custom.constants) user;
-  # in
+  let
+    inherit (config.custom.constants) user;
+  in
   {
 
     imports = with topLevel.config.flake.nixosModules; [
@@ -14,14 +14,14 @@
 
       inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
     ] ++ [
-      # inputs.home-manager.nixosModules.home-manager
-      # {
-      #   home-manager.users.${user} = {
-      #     imports = [
-      #       topLevel.config.flake.homeModules.i3
-      #     ];
-      #   };
-      # }
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager.users.${user} = {
+          imports = with topLevel.config.flake.homeModules; [
+            browser
+          ];
+        };
+      }
     ];
 
     powerManagement.enable = true;
