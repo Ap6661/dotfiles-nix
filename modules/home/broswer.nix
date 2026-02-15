@@ -20,7 +20,6 @@
                 proton-pass
                 sponsorblock
                 youtube-shorts-block
-                yomitan
             ];
             settings = {
               "FirefoxColor@mozilla.com".force = true;
