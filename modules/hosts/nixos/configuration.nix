@@ -11,6 +11,7 @@
       i3
       sddm
       messaging
+      japanese
 
       inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
     ] ++ [
