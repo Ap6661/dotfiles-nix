@@ -45,6 +45,7 @@
 
     xdg.sounds.enable = false;
 
+    services.fwupd.enable = true;
 
     system.stateVersion = "23.11"; # Don't Change This
   };
