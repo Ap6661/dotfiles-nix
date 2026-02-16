@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, ... }@topLevel:
 {
   flake.nixosModules.core = 
   { 
@@ -24,9 +24,19 @@
     base0E = "#e07ece";
     base0F = "#b26e44";
   };
+    inherit (config.custom.constants) user;
   in
   {
     imports = [
+      inputs.home-manager.nixosModules.home-manager 
+      {
+        home-manager.users.${user} = {  
+          imports = with topLevel.config.flake.homeModules; [
+            stylix
+          ];
+        };
+      }
+    ] ++ [
       inputs.stylix.nixosModules.stylix
     ];
 
@@ -59,5 +69,13 @@
     };
   };
 
+  flake.homeModules.stylix = 
+  {
+    config,
+    ...
+  }:
+  {
+    home.file.".background".source = config.stylix.image;
+  };
 
 }
