@@ -104,7 +104,13 @@
       Enabled 1
       '';
 
-    # inputs.home-manager.users.apnda.programs.firefox.profiles."main".settings."layout.css.devPixelsPerPx" = 1.5;
     
+  };
+  flake.homeModules.host-nixos = 
+  {
+    ...
+  }:
+  {
+    programs.firefox.profiles."main".settings."layout.css.devPixelsPerPx" = 1.5;
   };
 }

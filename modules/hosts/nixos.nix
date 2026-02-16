@@ -29,6 +29,7 @@ let
               inherit host user;
             };
           }     
+          config.flake.homeModules."host-${host}"
           config.flake.homeModules.core
           ];
         };
