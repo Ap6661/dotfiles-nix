@@ -1,7 +1,28 @@
 { inputs, lib, ... }: 
 {
 
-  flake.nixosModules.core = { pkgs, ... }: {
+  flake.nixosModules.core = { pkgs, ... }: 
+  let
+    bases = [ 
+        "base00"
+        "base01"
+        "base02"
+        "base03"
+        "base04"
+        "base05"
+        "base06"
+        "base07"
+        "base08"
+        "base09"
+        "base0A"
+        "base0B"
+        "base0C"
+        "base0D"
+        "base0E"
+        "base0F"
+        ];
+  in
+  {
     # specialisation = {
       # test.configuration = {
       #   services.displayManager.defaultSession = "niri";
@@ -90,29 +111,20 @@
     (c: {
       ${c.name}.configuration = {
         config.stylix = {
-        base16Scheme = lib.lists.foldr (a: b: a // b) {} (lib.lists.forEach 
-        [ 
-        "base00"
-        "base01"
-        "base02"
-        "base03"
-        "base04"
-        "base05"
-        "base06"
-        "base07"
-        "base08"
-        "base09"
-        "base0A"
-        "base0B"
-        "base0C"
-        "base0D"
-        "base0E"
-        "base0F"
-        ]
-        (b: {
-          ${b} = c.${b};
-        }));
-        image = lib.mkForce (pkgs.runCommand "image.png" { } "${pkgs.imagemagick}/bin/magick -size 1x1 xc:${c.base03} $out\n");
+        base16Scheme = lib.lists.foldr (a: b: a // b) {} (lib.lists.forEach bases (b: {
+         ${b} = c.${b};
+         }));
+        image = 
+        let 
+          themeFile = 
+            builtins.toFile "${c.name}-theme.json" (builtins.toJSON {
+              name = c.name;
+              colors = map (b: c.${b}) bases;
+            });
+        in 
+        lib.mkForce (pkgs.runCommand "${c.name}-image.png" { HOME = "$TMPDIR"; } ''
+            ${pkgs.gowall}/bin/gowall convert ${./background} --theme ${themeFile} --output $out
+              '');
         };
 
       };
