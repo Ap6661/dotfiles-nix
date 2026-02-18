@@ -1,7 +1,10 @@
 { inputs, ... }:
 {
   flake.nixosModules.core = 
-  { pkgs, ... }:
+  { pkgs, config, ... }:
+  let
+    inherit (config.custom.constants) host;
+  in
   {
     boot = {
       loader = {
@@ -22,7 +25,7 @@
 
 
     networking = {
-      hostName = "nixos"; # Define your hostname.
+      hostName = host; # Define your hostname.
         networkmanager.enable = true;
     };
 
