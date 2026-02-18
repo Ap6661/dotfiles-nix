@@ -1,18 +1,18 @@
 { lib, ... }:
 {
   flake.nixosModules.core = {
-    options.custom =  {
+    options.custom = {
       constants = lib.mkOption {
         type = lib.types.attrsOf lib.types.unspecified;
-        default = {};
+        default = { };
       };
     };
   };
   flake.homeModules.core = {
-    options.custom =  {
+    options.custom = {
       constants = lib.mkOption {
         type = lib.types.attrsOf lib.types.unspecified;
-        default = {};
+        default = { };
       };
     };
   };

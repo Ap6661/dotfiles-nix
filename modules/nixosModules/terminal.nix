@@ -1,40 +1,41 @@
-{inputs, ...}@topLevel: {
-  
-  flake.nixosModules.terminal = 
-  {
-    config,
-    pkgs,
-    ...
-  }:
-  let
-    inherit (config.custom.constants) user; 
-  in
-  {
-    imports = [
-      inputs.home-manager.nixosModules.home-manager 
-      {
-        home-manager.users.${user} = {  
-          imports = with topLevel.config.flake.homeModules; [ 
-            terminal 
-          ];
-        };
-      }
-    ];
+{ inputs, ... }@topLevel:
+{
 
-    fonts.packages = with pkgs.nerd-fonts; [
-      fira-code
-      hack
-    ];
-  };
+  flake.nixosModules.terminal =
+    {
+      config,
+      pkgs,
+      ...
+    }:
+    let
+      inherit (config.custom.constants) user;
+    in
+    {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager.users.${user} = {
+            imports = with topLevel.config.flake.homeModules; [
+              terminal
+            ];
+          };
+        }
+      ];
 
-  flake.homeModules.terminal = 
-  {
-    ...
-  }:
-  {
+      fonts.packages = with pkgs.nerd-fonts; [
+        fira-code
+        hack
+      ];
+    };
+
+  flake.homeModules.terminal =
+    {
+      ...
+    }:
+    {
       programs.wezterm = {
         enable = true;
-        extraConfig = /*lua*/ ''
+        extraConfig = /* lua */ ''
           local wezterm = require 'wezterm'
           local handle = io.popen("echo $XDG_SESSION_TYPE")
           local result = handle:read("*a")
@@ -59,5 +60,5 @@
         '';
       };
 
-  };
+    };
 }

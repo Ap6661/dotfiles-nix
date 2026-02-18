@@ -3,54 +3,58 @@
 # to /etc/nixos/configuration.nix instead.
 { inputs, ... }:
 {
-  flake.nixosModules.host-nixos = 
-  {
-    config,
-    lib,
-    modulesPath,
-    ...
-  }:
-  {
+  flake.nixosModules.host-nixos =
+    {
+      config,
+      lib,
+      modulesPath,
+      ...
+    }:
+    {
 
-    imports =
-      [
-      ( modulesPath + "/installer/scan/not-detected.nix")
+      imports = [
+        (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" ];
-    boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ ];
+      boot.initrd.availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+      ];
+      boot.initrd.kernelModules = [ ];
+      boot.kernelModules = [ "kvm-intel" ];
+      boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/79bcf5e9-d6b7-4b39-b509-41336f8fbd55";
-      fsType = "ext4";
+      fileSystems."/" = {
+        device = "/dev/disk/by-uuid/79bcf5e9-d6b7-4b39-b509-41336f8fbd55";
+        fsType = "ext4";
+      };
+
+      boot.initrd.luks.devices."luks-b1c2e84d-105b-49ac-a174-55e2d6472f3e".device =
+        "/dev/disk/by-uuid/b1c2e84d-105b-49ac-a174-55e2d6472f3e";
+
+      fileSystems."/boot" = {
+        device = "/dev/disk/by-uuid/BA11-AA0A";
+        fsType = "vfat";
+      };
+
+      swapDevices = [
+        {
+          device = "/swapfile";
+          size = 32 * 1024;
+        }
+      ];
+
+      # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+      # (the default) this is the recommended approach. When using systemd-networkd it's
+      # still possible to use this option, but it's recommended to use it in conjunction
+      # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+      networking.useDHCP = lib.mkDefault true;
+      # networking.interfaces.br-349b0dc79cef.useDHCP = lib.mkDefault true;
+      # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
+      # networking.interfaces.wlp170s0.useDHCP = lib.mkDefault true;
+
+      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+      hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
-
-    boot.initrd.luks.devices."luks-b1c2e84d-105b-49ac-a174-55e2d6472f3e".device = "/dev/disk/by-uuid/b1c2e84d-105b-49ac-a174-55e2d6472f3e";
-
-    fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/BA11-AA0A";
-      fsType = "vfat";
-    };
-
-    swapDevices = [{
-      device = "/swapfile";
-      size = 32 * 1024;
-    }];
-
-# Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-# (the default) this is the recommended approach. When using systemd-networkd it's
-# still possible to use this option, but it's recommended to use it in conjunction
-# with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    networking.useDHCP = lib.mkDefault true;
-# networking.interfaces.br-349b0dc79cef.useDHCP = lib.mkDefault true;
-# networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-# networking.interfaces.wlp170s0.useDHCP = lib.mkDefault true;
-
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  };
 }
