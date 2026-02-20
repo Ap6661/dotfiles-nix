@@ -7,6 +7,7 @@ set $altmod Mod4
 set $menu rofi -show
 set $emoji rofi -modi emoji -show emoji
 set $term wezterm
+set $calc wezterm start --class qalc qalc
 
 set $ws1  1
 set $ws2  2
@@ -166,6 +167,11 @@ bindsym $mod+a focus parent
 
 bindsym $mod+Shift+Escape move scratchpad
 bindsym $mod+Escape scratchpad show
+
+
+bindsym $mod+shift+m exec $calc 
+for_window [class="qalc"] move scratchpad, scratchpad show
+bindsym $mod+m [class="qalc"] scratchpad show 
 
 
 bindsym $mod+Tab workspace back_and_forth

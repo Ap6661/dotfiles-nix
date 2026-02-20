@@ -62,6 +62,8 @@
             i3status
             i3-swallow
 
+            libqalculate
+
             picom
             brightnessctl
             flameshot
