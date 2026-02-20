@@ -15,6 +15,7 @@
           sddm
           messaging
           japanese
+          virt
 
           inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         ]
