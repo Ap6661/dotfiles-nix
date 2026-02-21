@@ -20,7 +20,12 @@
         '')
 
         telegram-desktop
-        element-desktop
+        (writeScriptBin "element-desktop" /* bash */''
+          ${pkgs.element-desktop}/bin/element-desktop --password-store="gnome-libsecret" $@
+        ''
+        )
       ];
+
+      services.gnome.gnome-keyring.enable = true;
     };
 }
