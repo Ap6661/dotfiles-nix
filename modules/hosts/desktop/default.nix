@@ -72,7 +72,7 @@
         # Load nvidia driver for Xorg and Wayland
         xserver.videoDrivers = [ "nvidia" ];
         xserver.displayManager.setupCommands = ''
-          ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --auto --left-of DP-3
+          ${pkgs.xrandr}/bin/xrandr --output HDMI-0 --auto --left-of DP-3
         '';
         monado.enable = true;
       };
