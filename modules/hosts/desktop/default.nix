@@ -18,6 +18,7 @@
           sddm
           messaging
           japanese
+          tailscale
         ]
         ++ [
           inputs.home-manager.nixosModules.home-manager
