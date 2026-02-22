@@ -16,6 +16,7 @@
           messaging
           japanese
           virt
+          tailscale
 
           inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         ]
