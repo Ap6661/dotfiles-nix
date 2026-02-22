@@ -7,10 +7,15 @@
       ...
     }:
     {
-      environment.systemPackages = [
-        (pkgs.mpv-unwrapped.override {
-          sixelSupport = true;
+      environment.systemPackages = with pkgs; [
+        (mpv.override {
+          # sixelSupport = true;
+          scripts = with pkgs.mpvScripts; [
+            uosc
+            sponsorblock
+          ];
         })
+        yt-dlp
       ];
     };
 }

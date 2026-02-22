@@ -160,6 +160,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+# Play selection in mpv
+bindsym $mod+Shift+v exec "xclip -o | xargs mpv"
+
 
 ##
 ## Scrachpad :
