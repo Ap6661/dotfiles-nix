@@ -72,7 +72,7 @@
 
       boot.loader.limine.style = {
         graphicalTerminal = {
-          foreground = pkgs.lib.mkForce "88${builtins.substring 1 (-1) config.stylix.base16Scheme.base00}";
+          background = pkgs.lib.mkForce "88${builtins.substring 1 (-1) config.stylix.base16Scheme.base00}";
         };
 
       };
