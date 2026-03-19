@@ -28,19 +28,10 @@
       boot.initrd.kernelModules = [ ];
       boot.kernelModules = [ "kvm-amd" ];
       boot.extraModulePackages = [ ];
-      boot.loader.limine.extraConfig = ''
-        timeout: 5
-        editor_enabled: no
-        hash_mismatch_panic: no
-        graphics: yes
-        default_entry: 1
-        wallpaper: boot():/limine/wallpapers/nixos-nix-wallpaper-simple-dark-gray_bootloader.png#63e4fd14a1f49bdc99a7cf8460bd032d1f223b7447495aebf7db41662a94920ef815dce8e9011aa1c4363463b0319ec33c68d1187bd3428358853ad4df1df387
-                           wallpaper_style: streched
-                           backdrop: 2F302F
-
-                           /Windows
-                             protocol: efi
-                             path: uuid(16cb149d-fc00-4acc-9b9d-e7e2067a911d):/EFI/Microsoft/Boot/bootmgfw.efi
+      boot.loader.limine.extraEntries = ''
+         /Windows
+           protocol: efi
+           path: uuid(16cb149d-fc00-4acc-9b9d-e7e2067a911d):/EFI/Microsoft/Boot/bootmgfw.efi
       '';
 
       fileSystems."/" = {
