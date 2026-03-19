@@ -19,6 +19,7 @@
           messaging
           japanese
           tailscale
+          ratbag
         ]
         ++ [
           inputs.home-manager.nixosModules.home-manager
