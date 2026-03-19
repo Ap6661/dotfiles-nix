@@ -69,6 +69,13 @@
         #   ${pkgs.imagemagick}/bin/magick convert ${./user/theme/bg.jpg} -fill "${config.stylix.base16Scheme.base00}" -colorize 60 $out
         # '';
       };
+
+      boot.loader.limine.style = {
+        graphicalTerminal = {
+          foreground = pkgs.lib.mkForce "88${builtins.substring 1 (-1) config.stylix.base16Scheme.base00}";
+        };
+
+      };
     };
 
   flake.homeModules.stylix =
