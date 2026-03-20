@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
 
   flake.homeModules.test =
@@ -18,6 +18,9 @@
       config,
       ...
     }:
+    let
+      inherit (config.custom.constants) isVm;
+    in
     {
       home.file = {
         ".config/i3/config" = {
@@ -41,7 +44,6 @@
             ${(builtins.readFile ./i3/config)}
           '';
         };
-        ".config/picom".source = ./picom;
         ".config/nitrogen" = {
           source = ./nitrogen;
           recursive = true;
@@ -68,6 +70,8 @@
           $base0E: ${config.stylix.base16Scheme.base0E};
           $base0F: ${config.stylix.base16Scheme.base0F};
         '';
-      };
+      } // (if isVm then {} else {
+        ".config/picom".source = ./picom;
+      });
     };
 }

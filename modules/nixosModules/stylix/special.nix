@@ -2,8 +2,9 @@
 {
 
   flake.nixosModules.core =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     let
+      inherit (config.custom.constants) isVm;
       bases = [
         "base00"
         "base01"
@@ -23,7 +24,7 @@
         "base0F"
       ];
     in
-    {
+    (lib.mkIf (!isVm)) {
       # specialisation = {
       # test.configuration = {
       #   services.displayManager.defaultSession = "niri";

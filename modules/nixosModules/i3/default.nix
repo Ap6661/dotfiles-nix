@@ -8,7 +8,7 @@
       ...
     }:
     let
-      inherit (config.custom.constants) user;
+      inherit (config.custom.constants) user isVm;
     in
     {
 
@@ -64,8 +64,9 @@
 
             libqalculate
 
-            picom
             brightnessctl
+          ] ++ lib.optional (!isVm) [ 
+            picom
             flameshot
           ];
         };

@@ -5,13 +5,14 @@ let
     {
       system ? "x86_64-linux",
       user ? "apnda",
+      isVm ? false,
     }:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         {
           config.custom.constants = {
-            inherit host user;
+            inherit host user isVm;
           };
         }
         config.flake.nixosModules."host-${host}"
@@ -28,7 +29,7 @@ let
             imports = [
               {
                 config.custom.constants = {
-                  inherit host user;
+                  inherit host user isVm;
                 };
               }
               config.flake.homeModules."host-${host}"
@@ -39,11 +40,13 @@ let
       ];
 
     };
+    mkVm = host: args: mkNixos host ( args // { isVm = true; });
 in
 {
   flake.nixosConfigurations = {
     nixos = mkNixos "nixos" { };
     desktop = mkNixos "desktop" { };
-    # vm = mkNixos "vm" {  };
+
+    nixos-vm = mkVm "nixos" {  };
   };
 }
