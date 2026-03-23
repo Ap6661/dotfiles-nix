@@ -65,10 +65,10 @@
             libqalculate
 
             brightnessctl
-          ] ++ lib.optional (!isVm) [ 
+          ] ++ (if (isVm) then [] else with pkgs; [  
             picom
             flameshot
-          ];
+          ]);
         };
       };
     };
