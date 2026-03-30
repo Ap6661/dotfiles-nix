@@ -62,6 +62,9 @@
         ];
       };
       
+      services.logind.settings.Login = {
+        HandlePowerKey = "hibernate";
+      };
       boot.resumeDevice = "/dev/pool/swap";
       swapDevices = [{
         device = "/dev/pool/swap";
