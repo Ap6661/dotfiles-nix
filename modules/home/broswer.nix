@@ -40,6 +40,7 @@
               "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
               "browser.newtabpage.activity-stream.showSearch" = false;
               "browser.newtabpage.activity-stream.showWeather" = false;
+
               "extensions.autoDisableScopes" = 0;
 
               # Disable password saving
@@ -50,6 +51,17 @@
               "privacy.annotate_channels.strict_list.enabled" = true;
               "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
               "datareporting.healthreport.uploadEnabled" = false;
+              "datareporting.usage.uploadEnable" = false;
+
+
+              # AI
+              "browser.ai.control.default" = "blocked";
+              "browser.ai.control.linkPreviewKeyPoints" = "blocked";
+              "browser.ai.control.pdfjsAltText" = "blocked";
+              "browser.ai.control.sidebarChatbot" = "blocked";
+              "browser.ai.control.smartTabGroups" = "blocked";
+              "browser.ai.control.smartWindow" = "blocked";
+              "browser.ai.control.translations" = "blocked";
             };
           };
         };
