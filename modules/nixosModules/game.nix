@@ -4,10 +4,13 @@
     { pkgs, ... }:
     {
       # nixpkgs.config.allowBroken = true;
-      programs.steam.enable = true;
-      programs.steam.extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
+      programs = { 
+        gamemode.enable = true;
+        steam.enable = true;
+        steam.extraCompatPackages = with pkgs; [
+          proton-ge-bin
+        ];
+      };
       environment.systemPackages = with pkgs; [
         lutris
         wineWow64Packages.stable
