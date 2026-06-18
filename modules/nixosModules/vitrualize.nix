@@ -15,7 +15,7 @@
       environment.systemPackages = with pkgs; [
         distrobox
         looking-glass-client
-        qemu_full
+        # qemu_full
       ];
 
       programs.virt-manager.enable = true;
