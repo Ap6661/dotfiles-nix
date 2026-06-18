@@ -4,11 +4,13 @@
   flake.homeModules.browser =
     {
       pkgs,
+      config,
       ...
     }:
     {
       programs.firefox = {
         enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
         profiles = {
           "main" = {
             name = "main";
