@@ -51,24 +51,32 @@
             '';
           });
 
-          extraPackages = with pkgs; [
-            nitrogen
-            i3lock
-            xclip
+          extraPackages =
+            with pkgs;
+            [
+              nitrogen
+              i3lock
+              xclip
 
-            eww
-            wmctrl
-            beats
-            i3status
-            i3-swallow
+              eww
+              wmctrl
+              beats
+              i3status
+              i3-swallow
 
-            libqalculate
+              libqalculate
 
-            brightnessctl
-          ] ++ (if (isVm) then [] else with pkgs; [  
-            picom
-            flameshot
-          ]);
+              brightnessctl
+            ]
+            ++ (
+              if (isVm) then
+                [ ]
+              else
+                with pkgs;
+                [
+                  picom
+                ]
+            );
         };
       };
     };

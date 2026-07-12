@@ -70,8 +70,22 @@
           $base0E: ${config.stylix.base16Scheme.base0E};
           $base0F: ${config.stylix.base16Scheme.base0F};
         '';
-      } // (if isVm then {} else {
-        ".config/picom".source = ./picom;
-      });
+      }
+      // (
+        if isVm then
+          { }
+        else
+          {
+            ".config/picom".source = ./picom;
+          }
+      );
+      services.flameshot = {
+        enable = true;
+        settings = {
+          General = {
+            useX11LegacyScreenshot = true;
+          };
+        };
+      };
     };
 }
