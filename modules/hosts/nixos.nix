@@ -40,13 +40,13 @@ let
       ];
 
     };
-    mkVm = host: args: mkNixos host ( args // { isVm = true; });
+  mkVm = host: args: mkNixos host (args // { isVm = true; });
 in
 {
   flake.nixosConfigurations = {
     nixos = mkNixos "nixos" { };
     desktop = mkNixos "desktop" { };
 
-    nixos-vm = mkVm "nixos" {  };
+    nixos-vm = mkVm "nixos" { };
   };
 }

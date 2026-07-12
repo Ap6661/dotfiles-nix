@@ -29,9 +29,9 @@
       boot.kernelModules = [ "kvm-amd" ];
       boot.extraModulePackages = [ ];
       boot.loader.limine.extraEntries = ''
-         /Windows
-           protocol: efi
-           path: uuid(16cb149d-fc00-4acc-9b9d-e7e2067a911d):/EFI/Microsoft/Boot/bootmgfw.efi
+        /Windows
+          protocol: efi
+          path: uuid(16cb149d-fc00-4acc-9b9d-e7e2067a911d):/EFI/Microsoft/Boot/bootmgfw.efi
       '';
 
       fileSystems = {
@@ -49,7 +49,6 @@
         };
       };
 
-
       boot.initrd.luks.devices."crypted".device =
         "/dev/disk/by-uuid/d15a4a8b-946c-46ee-9230-09b04bec9cec";
 
@@ -61,14 +60,16 @@
           "dmask=0022"
         ];
       };
-      
+
       services.logind.settings.Login = {
         HandlePowerKey = "hibernate";
       };
       boot.resumeDevice = "/dev/pool/swap";
-      swapDevices = [{
-        device = "/dev/pool/swap";
-      }];
+      swapDevices = [
+        {
+          device = "/dev/pool/swap";
+        }
+      ];
 
       # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
       # (the default) this is the recommended approach. When using systemd-networkd it's

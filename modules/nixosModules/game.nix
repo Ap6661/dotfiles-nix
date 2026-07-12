@@ -4,7 +4,7 @@
     { pkgs, ... }:
     {
       # nixpkgs.config.allowBroken = true;
-      programs = { 
+      programs = {
         gamemode.enable = true;
         steam.enable = true;
         steam.extraCompatPackages = with pkgs; [

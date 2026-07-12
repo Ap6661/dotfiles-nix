@@ -20,7 +20,8 @@
           japanese
           tailscale
           ratbag
-	  virt
+          drawing
+          virt
         ]
         ++ [
           inputs.home-manager.nixosModules.home-manager

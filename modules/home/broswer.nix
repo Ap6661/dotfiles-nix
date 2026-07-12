@@ -53,7 +53,6 @@
               "datareporting.healthreport.uploadEnabled" = false;
               "datareporting.usage.uploadEnable" = false;
 
-
               # AI
               "browser.ai.control.default" = "blocked";
               "browser.ai.control.linkPreviewKeyPoints" = "blocked";

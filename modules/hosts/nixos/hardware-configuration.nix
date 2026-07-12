@@ -27,14 +27,14 @@
 
       systemd.services.disable-snd-hda-power-save = {
         description = "Disable snd_hda_intel power_save";
-        after = ["sound.target"];
-        wants = ["sound.target"];
+        after = [ "sound.target" ];
+        wants = [ "sound.target" ];
         serviceConfig = {
           Type = "oneshot";
           ExecStart = "/bin/sh -c 'echo 0 > /sys/module/snd_hda_intel/parameters/power_save'";
           RemainAfterExit = true;
         };
-        wantedBy = ["multi-user.target"];
+        wantedBy = [ "multi-user.target" ];
       };
 
       fileSystems."/" = {

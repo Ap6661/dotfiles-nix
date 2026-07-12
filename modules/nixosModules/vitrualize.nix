@@ -42,6 +42,6 @@
         "/dev/ptmx", "/dev/kvm",
         "/dev/kvmfr0"
         ]
-        ''; 
+      '';
     };
 }
