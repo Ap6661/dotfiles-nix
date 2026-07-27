@@ -25,6 +25,7 @@
       ]
       ++ (with topLevel.config.flake.nixosModules; [
         terminal
+        notifications
       ]);
 
       services.xserver = {
