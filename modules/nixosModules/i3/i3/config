@@ -43,7 +43,7 @@ bindsym $mod+g exec i3-msg -t run_command border toggle
 
 font pango:Hack Nerd Font Mono 20
 
-exec_always nitrogen --restore
+exec_always feh --bg-fill ~/.background --no-xinerama
 exec picom &
 exec fcitx5 -d 
 exec sh ~/.config/eww/getworkspaces.sh

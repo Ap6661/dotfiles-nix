@@ -55,7 +55,7 @@
           extraPackages =
             with pkgs;
             [
-              nitrogen
+              feh
               i3lock
               xclip
 

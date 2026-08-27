@@ -44,10 +44,6 @@
             ${(builtins.readFile ./i3/config)}
           '';
         };
-        ".config/nitrogen" = {
-          source = ./nitrogen;
-          recursive = true;
-        };
         ".config/eww" = {
           source = ./eww/config;
           recursive = true;
