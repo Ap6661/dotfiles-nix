@@ -63,6 +63,10 @@
           # Toggle Opacity
           background_opacity 0.8
           map ctrl+shift+o kitten ~/.config/kitty/opacity.py
+
+          # Font Size
+          map ctrl+minus change_font_size all -2.0
+          map ctrl+equal change_font_size all +2.0
           '';
       };
 
