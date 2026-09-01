@@ -30,11 +30,13 @@
 
   flake.homeModules.terminal =
     {
+      lib,
       ...
     }:
     {
       programs.kitty = {
         enable = true;
+        font.name = lib.mkForce "FiraCode Nerd Font Mono";
         extraConfig = ''
           dynamic_background_opacity yes
 
