@@ -13,6 +13,8 @@
         unzip
         wget
         file
+        ffmpeg-full
+        pandoc
       ];
 
     };
