@@ -20,7 +20,6 @@
           japanese
           tailscale
           ratbag
-          drawing
           virt
         ]
         ++ [
