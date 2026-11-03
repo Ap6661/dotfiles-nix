@@ -21,6 +21,7 @@
           tailscale
           ratbag
           virt
+          syncthing
         ]
         ++ [
           inputs.home-manager.nixosModules.home-manager
@@ -28,6 +29,7 @@
             home-manager.users.${user} = {
               imports = with topLevel.config.flake.homeModules; [
                 browser
+                passwordManager
               ];
             };
           }

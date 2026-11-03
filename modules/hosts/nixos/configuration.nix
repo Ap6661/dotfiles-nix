@@ -17,6 +17,7 @@
           japanese
           virt
           tailscale
+          syncthing
 
           inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         ]
@@ -26,6 +27,7 @@
             home-manager.users.${user} = {
               imports = with topLevel.config.flake.homeModules; [
                 browser
+                passwordManager
               ];
             };
           }
