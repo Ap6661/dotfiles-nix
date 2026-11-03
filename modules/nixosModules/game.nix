@@ -12,7 +12,7 @@
         ];
       };
       environment.systemPackages = with pkgs; [
-        lutris
+        # lutris
         wineWow64Packages.stable
         winetricks
         # itch
