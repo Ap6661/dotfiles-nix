@@ -46,6 +46,7 @@ in
   flake.nixosConfigurations = {
     nixos = mkNixos "nixos" { };
     desktop = mkNixos "desktop" { };
+    gpd = mkNixos "gpd" { };
 
     nixos-vm = mkVm "nixos" { };
   };
