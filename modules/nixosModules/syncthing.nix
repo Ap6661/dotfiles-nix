@@ -2,16 +2,10 @@
 {
   flake.nixosModules.syncthing =
     {
-      config,
       pkgs,
       ...
     }:
-    let
-      inherit (config.custom.constants) user;
-    in
     {
-      imports = [ inputs.sops.nixosModules.sops ];
-
       services.syncthing = {
         enable = true;
         overrideDevices = false;
