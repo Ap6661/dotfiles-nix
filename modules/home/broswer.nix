@@ -61,6 +61,25 @@
               "browser.ai.control.smartTabGroups" = "blocked";
               "browser.ai.control.smartWindow" = "blocked";
               "browser.ai.control.translations" = "blocked";
+
+              # Vertical Tabbing
+              "sidebar.verticalTabs" = true;
+              "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
+              "sidebar.main.tools" = "";
+              "browser.uiCustomization.navBarWhenVerticalTabs" =
+              [
+                "sidebar-button"
+                "back-button"
+                "forward-button"
+                "stop-reload-button"
+                "customizableui-special-spring1"
+                "vertical-spacer"
+                "urlbar-container"
+                "customizableui-special-spring2"
+                "downloads-button"
+                "unified-extensions-button"
+                "alltabs-button"
+              ];
             };
           };
         };
