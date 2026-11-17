@@ -40,6 +40,11 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    eden = {
+      url = "github:Daaboulex/eden-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

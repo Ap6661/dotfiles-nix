@@ -19,6 +19,9 @@
           # tailscale
           # syncthing
 
+          games
+          eden
+
           inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
       ]
       ++ [
