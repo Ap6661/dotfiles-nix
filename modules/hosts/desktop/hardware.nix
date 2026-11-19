@@ -25,7 +25,7 @@
         "usb_storage"
         "sd_mod"
       ];
-      boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_drm" ];
+      boot.initrd.kernelModules = [ ];
       boot.kernelModules = [ "kvm-amd" ];
       boot.extraModulePackages = [ ];
       boot.loader.limine.extraEntries = ''
